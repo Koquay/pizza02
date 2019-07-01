@@ -1,0 +1,72 @@
+$primary: #a30000; 
+$secondary: #dd2c00;
+$tertiary: #ff6434;
+$gray: #f7f7f7;
+
+#menu-section {
+    .card {
+        positon:relative;
+                
+        .menu-title {
+            position: absolute;
+            color: white;
+            background: $tertiary;
+            padding: .3rem 1rem;
+            bottom: 0;
+            width: 100%;
+            font-size: 1.2rem;
+            opacity: .8; 
+            
+            @media(min-width: 992px) {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+.navbar {
+    .telephone {
+        color: white;
+        font-size: 1.2rem;
+    }
+}
+
+#header-container {
+    background: $secondary;
+    
+    nav {       
+        
+        a {
+            color: white;
+        }        
+        
+        ul {
+            background: white;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            
+             a {
+                 color: $primary; 
+                 
+                 &:hover {
+                     font-weight: bold;
+                 }
+              }  
+        
+            @media(min-width: 992px) {
+                background: $secondary;
+                padding-left: 0rem; 
+                margin-bottom: 0rem;
+                
+                a {
+                    color: white;   
+                }                
+            }
+        }
+    }
+    
+    i {
+        color: white;
+        font-size: 2rem;
+    }
+}

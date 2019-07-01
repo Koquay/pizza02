@@ -1,0 +1,177 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col text-center">
+            <h1 class="page-header">CREATE YOUR OWN</h1>
+        </div>
+        <div class="col-12 text-center"><button class="btn btn-primary view-order" type="button">
+                <strong>VIEW ORDER</strong></button>
+        </div>
+    </div>
+    <section id="customize-pizza-section" class="my-5">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-5 order-1 order-md-0 mb-2">
+                <div role="tablist" id="accordion-1">
+                    <div class="card topping-select">
+                        <div class="card-header" role="tab"><span>Choose</span>
+                            <h5 class="d-flex align-items-center mb-0">
+                                <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1">
+                                    Toppings
+                                    <i class="fa fa-caret-right ml-2"></i>
+                                </a>
+                            </h5>
+                        </div>
+                        <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                            <div class="card-body">
+                                <section class="mt-2" *ngFor="let topping of toppings">
+                                    <h6>{{topping.title}}</h6>
+                                    <div class="row">
+                                        <div class="col-4 d-flex justify-content-center align-items-center">
+                                            <img class="img-fluid d-flex" src="assets/img/{{topping.img}}">
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="row">
+                                                <div class="col d-flex justify-content-center">
+                                                    <img class="img-fluid mr-3" src="assets/img/notoppings.jpg" style="width: 20px;height: 20px;">
+                                                    <img class="img-fluid mr-3" src="assets/img/full.jpg" style="width: 20px;height: 20px;">
+                                                    <img class="img-fluid mr-3" src="assets/img/left.jpg" style="width: 20px;height: 20px;">
+                                                    <img class="img-fluid mr-3" src="assets/img/right.jpg" style="width: 20px;height: 20px;">
+                                                    <img class="img-fluid" src="assets/img/2x.jpg" style="width: 20px;height: 20px;">
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col d-flex justify-content-center">
+                                                    <ng-container *ngFor="let type of topping.type">
+                                                        <input type="radio" class="mr-1" name="{{topping.name}}" id="{{type.location}}" [(ngModel)]="topping.location" [value]="type.location"
+                                                            checked="type.location=='none'" (change)="addXtraTopping(topping, type.img)">
+                                                    </ng-container>
+                                                    <input type="checkbox" class="ml-2" [(ngModel)]="topping.double" 
+                                                        (change)="setLocation(topping)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab"><span>Choose</span>
+                            <h5 class="d-flex align-items-center mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2"
+                                    href="div#accordion-1 .item-2">Cheese<i class="fa fa-caret-right ml-2"></i></a></h5>
+                        </div>
+                        <div class="collapse item-2" role="tabpanel" data-parent="#accordion-1">
+                            <div class="card-body">
+                                <p class="card-text">* Calories listed are in addition to the calories displayed for the
+                                    basic preparation of the standard food item. (Cals/slice)</p>
+                                <div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Dough</a></li>
+                                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Sauce</a></li>
+                                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Cheese</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" role="tabpanel" id="tab-1">
+                                            <p>Content for tab 1.</p>
+                                        </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-2">
+                                            <p>Content for tab 2.</p>
+                                        </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-3">
+                                            <p>Content for tab 3.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab"><span>Choose</span>
+                            <h5 class="d-flex align-items-center mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3"
+                                    href="div#accordion-1 .item-3">Sauce<i class="fa fa-caret-right ml-2"></i></a></h5>
+                        </div>
+                        <div class="collapse item-3" role="tabpanel" data-parent="#accordion-1">
+                            <div class="card-body">
+                                <p class="card-text">* Calories listed are in addition to the calories displayed for the
+                                    basic preparation of the standard food item. (Cals/slice)</p>
+                                <div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Dough</a></li>
+                                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Sauce</a></li>
+                                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Cheese</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" role="tabpanel" id="tab-1">
+                                            <p>Content for tab 1.</p>
+                                        </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-2">
+                                            <p>Content for tab 2.</p>
+                                        </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-3">
+                                            <p>Content for tab 3.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 d-lg-flex col-md-6 col-lg-7 order-0 order-md-1 mb-2" id="customize-col">
+                <div class="row" *ngIf="basePizza">
+                    <div class="col-12 d-flex justify-content-center" id="create-col">
+                        <img class="img-fluid" id="base" src="assets/img/{{basePizza.img}}">
+                        <img *ngFor="let topping of basePizza.toppings" class="img-fluid" id="base" src="assets/img/{{topping}}">
+                        <img *ngFor="let topping of basePizza.xtraToppings" class="img-fluid" id="base" src="assets/img/{{topping.img}}">
+                    </div>
+                </div>
+                <div class="row" *ngIf="pizza">
+                    <div class="col d-flex justify-content-lg-center align-items-lg-center" id="add-column">
+                        <div class="d-flex justify-content-between">
+                            <span class="d-lg-flex align-items-lg-center">
+                                <a class="d-lg-flex align-items-lg-center" (click)="decreaseQuantity()">
+                                    <i class="fa fa-minus-square"></i>
+                                </a>
+                                <span id="quantity" class="mx-2 font-weight-bold f-1pt5">{{pizza.quantity}}</span>
+                                <a class="d-lg-flex align-items-lg-center"  (click)="increaseQuantity()">
+                                    <i class="fa fa-plus-square"></i>
+                                </a>
+                            </span>
+                            <span class="font-weight-bold f-1pt5">{{computePrice() | currency:'USD':'symbol-narrow'}}</span>
+                            <span class="d-lg-flex align-items-lg-center">
+                                <button class="btn btn-primary btn-sm font-weight-bold" type="button"
+                                    (click)="addToOrder()">
+                                    ADD
+                                </button>
+                                <a id="cancel" class="d-block ml-lg-3" (click)="cancelOrder()" 
+                                    style="/*color: #f9501c;*/">
+                                    Cancel
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5" *ngIf="xtraToppings.length">
+                    <div class="col" id="customization-list">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>You added:</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" id="items">
+                                <ol class="pl-4">
+                                    <li *ngFor="let topping of xtraToppings">
+                                        {{displaySelection(topping)}}
+                                    </li>                                    
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,163 @@
+<app-header></app-header>
+<div class="container">
+    <section id="order">
+        <div class="row">
+            <div class="col">
+                <h2 id="order-title">Your Order</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form>
+                    <div class="form-row">
+                        <div class="col-12 col-lg-7">
+                            <div class="form-row d-none d-md-block">
+                                <div class="col">
+                                    <div class="form-row font-weight-bold">
+                                        <div class="col-2"><span>Item</span></div>
+                                        <div class="col d-flex justify-content-center align-items-center"><span class="d-flex">Description</span></div>
+                                        <div class="col-3 d-flex align-items-center justify-content-lg-center"><span>Quantity</span></div>
+                                        <div class="col-2 d-flex justify-content-end align-items-center"><span>Price</span></div>
+                                        <div class="col-12">
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-row" *ngFor="let item of order">
+                                        <div class="col-2">
+                                            <img class="img-fluid" src="assets/img/{{item.img}}"></div>
+                                        <div class="col d-flex justify-content-center align-items-center">
+                                            <span class="d-flex">{{item.name}}</span>
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center align-items-center quantity">
+                                            <a (click)="decreaseQuantity(item)">
+                                                <i class="fa fa-minus-square mr-2 add"></i>
+                                            </a>
+                                            <span>{{item.quantity}}</span>
+                                            <a (click)="increaseQuantity(item)">
+                                                <i class="fa fa-plus-square ml-2 add"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end align-items-center price">
+                                            <span>{{item.price * item.quantity | currency:'USD':'symbol-narrow'}}</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-row">
+                                        <div class="col d-flex justify-content-end align-items-center mr-4">
+                                            <span class="d-flex">Subtotal</span>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end align-items-center font-weight-bold">
+                                            <span>{{getSubtotal() | currency:'USD':'symbol-narrow'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col d-flex justify-content-end align-items-center mr-4">
+                                            <span class="d-flex">Delivery Charge</span>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end align-items-center font-weight-bold">
+                                            <span>{{getDeliveryCharge() | currency:'USD':'symbol-narrow'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col d-flex justify-content-end align-items-center mr-4">
+                                            <span class="d-flex">GST/HST</span>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end align-items-center font-weight-bold">
+                                            <span>{{getGstHst() | currency:'USD':'symbol-narrow'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col d-flex justify-content-end align-items-center mr-4">
+                                            <span class="d-flex">PST</span>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end align-items-center font-weight-bold">
+                                            <span>{{0 | currency:'USD':'symbol-narrow'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col d-flex justify-content-end align-items-center mr-4">
+                                            <span class="d-flex">Discount</span>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end align-items-center font-weight-bold">
+                                            <span class="font-weight-bold">
+                                                    {{getDiscount() | currency:'USD':'symbol-narrow'}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row font-weight-bold f-1pt2 mb-4">
+                                        <div class="col d-flex justify-content-end align-items-center mr-4">
+                                            <span class="d-flex">Total</span>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end align-items-center">
+                                            <span>
+                                                    {{getTotal() | currency:'USD':'symbol-narrow'}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 ml-lg-5">
+                            <div class="form-row">
+                                <div class="col delivery p-4">
+                                    <div class="form-row">
+                                        <div class="col-12">
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"
+                                                    checked="" name="delivery-method"><label class="form-check-label" for="formCheck-1">Pick
+                                                    Up
+                                                </label></div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"
+                                                    name="delivery-method"><label class="form-check-label" for="formCheck-1">Delivery</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-row mt-2">
+                                                <div class="col-12"><span>Name:</span></div>
+                                                <div class="col col-md-6 col-lg-12"><input class="form-control" type="text"></div>
+                                            </div>
+                                            <div class="form-row mt-2">
+                                                <div class="col-12"><span>Telephone:</span></div>
+                                                <div class="col col-md-6 col-lg-12"><input class="form-control" type="text"></div>
+                                            </div>
+                                            <div class="form-row mt-2">
+                                                <div class="col-12"><span>Address:</span></div>
+                                                <div class="col col-md-6 col-lg-12"><input class="form-control" type="text"></div>
+                                            </div>
+                                            <div class="form-row mt-2">
+                                                <div class="col-12"><span>City:</span></div>
+                                                <div class="col col-md-6 col-lg-12"><input class="form-control" type="text"></div>
+                                            </div>
+                                            <div class="form-row mt-2">
+                                                <div class="col-12"><span>Delivery Instructions; (If any):</span></div>
+                                                <div class="col col-md-6 col-lg-12"><textarea class="form-control"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row mt-4">
+                                        <div class="col-12 text-center"><button class="btn btn-primary view-order w-75" type="button">Place
+                                                Order
+                                            </button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>

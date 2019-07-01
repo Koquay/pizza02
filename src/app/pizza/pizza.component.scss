@@ -1,0 +1,74 @@
+$primary: #a30000; 
+$secondary: #dd2c00;
+$tertiary: #ff6434;
+$gray: #f7f7f7;
+
+#pizza-section {
+    #title {
+        color: $primary;
+        letter-spacing: 1rem;
+        
+    }
+    
+    .card {
+       
+        h4 {
+            color: $primary;
+            padding-top: 1rem;
+            font-size: 1.2rem;
+            
+            @media(min-width: 992px) {
+                font-size: 1.5rem;
+            }
+        }
+        
+        p {
+            font-size: 1.2rem; 
+        }
+        
+        button {
+            font-weight: bold;
+            margin-top: 1rem;
+            min-width: 8.25rem;
+        }
+        
+        .add-toppings {
+            background: $tertiary !important;
+            
+            &:hover {
+                background: $secondary !important;
+            }
+        }
+        
+        .add-to-cart {
+            background: $tertiary !important;
+            
+            &:hover {
+                background: $secondary !important;
+            }
+        }
+        
+        .increase-quantity {
+            div {
+                background: $gray;
+                width: 100%;
+                padding: 1rem;
+                border-radius: 12px;
+            
+                i {
+                    background: white;
+                    color: $primary;
+                    font-size:2em;
+                
+                    &:hover {
+                        color: $tertiary !important;
+                    }
+                }
+                        
+                @media(min-width: 992px) {
+                    width: 80%;
+                }
+            }
+        }
+    }
+}

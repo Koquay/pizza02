@@ -1,0 +1,26 @@
+$primary: #a30000; 
+$secondary: #dd2c00;
+$tertiary: #ff6434;
+$gray: #f7f7f7;
+
+#order {
+    .quantity {
+        .add {
+            color: $primary;
+            font-size:1.4rem;
+            
+            &:hover {
+                color: $secondary;
+            }
+        }
+    }
+    
+    .delivery {
+        background: $gray;   
+    }
+    
+    #order-title {
+        width: 10.5rem;
+        border-bottom: 4px solid $tertiary;
+    }
+}
