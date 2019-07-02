@@ -14,6 +14,7 @@ export class CustomizeComponent implements OnInit {
   private pizza;
   private basePizza;
   private xtraToppings = [];
+  private editId = '';
 
   constructor(
     private customizeService: CustomizeService,
@@ -24,7 +25,6 @@ export class CustomizeComponent implements OnInit {
 
   ngOnInit() {
     this.initPizza();
-    this.edit();
   }
 
   private initPizza() {
@@ -46,7 +46,9 @@ export class CustomizeComponent implements OnInit {
         this.addStandardToppingsToBase(this.pizza.toppings);
       })
     } else {
-      this.edit();
+      if(this.editId != 'edited') {
+        this.edit();
+      }      
     }    
   }
 
@@ -141,7 +143,8 @@ export class CustomizeComponent implements OnInit {
 
   private cancelOrder() {
     this.initPizza();
-    this.xtraToppings = [];
+    this.xtraToppings = [];    
+    this.basePizza.xtraToppings = [];
   }
 
   private addToOrder() {
@@ -156,21 +159,24 @@ export class CustomizeComponent implements OnInit {
   private edit() {
     this.orderService.getEditItem().subscribe(item => {
       console.log('item to edit', item);
+      this.editId ='edited';
       this.pizza = item;
       this.pizzaService.getBasePizza().subscribe(base => {
         this.basePizza = base;
         this.addStandardToppingsToBase(this.pizza.toppings);
-        this.addExistingXtraToppingsToBase();
+        this.addExistingXtraToppingsToBase(item);
       })
     })
   }
 
-  private addExistingXtraToppingsToBase() {    
-    for(let topping of this.pizza.xtraToppings) {
-      this.xtraToppings.push(topping);
-      let type = topping.type.find(type => type.location = topping.location);
-      console.log('type', type)
-      this.basePizza.xtraToppings.push({ name: topping.name, img: type.img });
+  private addExistingXtraToppingsToBase(item) {    
+    for(let xTopping of item.xtraToppings) {
+      this.xtraToppings.push(xTopping);
+      let chosenTopping = this.toppings.find(topping => topping.name == xTopping.name);
+      chosenTopping.location = xTopping.location;
+      chosenTopping.double = xTopping.double;
+      let type = xTopping.type.find(type => type.location == xTopping.location);
+      this.basePizza.xtraToppings.push({ name: xTopping.name, img: type.img });
     }
   }
 }

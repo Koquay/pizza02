@@ -146,7 +146,8 @@
                             <span class="font-weight-bold f-1pt5">{{computePrice() | currency:'USD':'symbol-narrow'}}</span>
                             <span class="d-lg-flex align-items-lg-center">
                                 <button class="btn btn-primary btn-sm font-weight-bold" type="button" (click)="addToOrder()">
-                                    ADD
+                                    <span *ngIf="!editId">ADD</span>
+                                    <span *ngIf="editId">SAVE</span>
                                 </button>
                                 <a id="cancel" class="d-block ml-lg-3" (click)="cancelOrder()" style="/*color: #f9501c;*/">
                                     Cancel
