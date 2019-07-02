@@ -24,6 +24,7 @@ export class CustomizeComponent implements OnInit {
 
   ngOnInit() {
     this.initPizza();
+    this.edit();
   }
 
   private initPizza() {
@@ -36,21 +37,23 @@ export class CustomizeComponent implements OnInit {
   private getPizzaToCustomize() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('id', id);
-    this.pizzaService.getPizzaToCustomize(id).subscribe(pizzas => {
-      this.pizza = pizzas[0];
-      this.basePizza = pizzas[1];
-      console.log('pizza', this.pizza);
-      console.log('basePizza', this.basePizza);
-      this.addStandardToppingsToBase(this.pizza.toppings);
-    })
+    if(id) {
+      this.pizzaService.getPizzaToCustomize(id).subscribe(pizzas => {
+        this.pizza = pizzas[0];
+        this.basePizza = pizzas[1];
+        console.log('pizza', this.pizza);
+        console.log('basePizza', this.basePizza);
+        this.addStandardToppingsToBase(this.pizza.toppings);
+      })
+    } else {
+      this.edit();
+    }    
   }
 
   private addStandardToppingsToBase(toppings) {
     for (let name of toppings) {
       let topping = this.toppings.find(topping => topping.name == name);
-      console.log('topping.name ', topping)
       let toppingType = topping.type.find(type => type.location == 'both');
-      console.log('toppingType', toppingType)
       this.basePizza.toppings.push(toppingType.img);
       console.log('basePizza after toppings', this.basePizza)
     }
@@ -142,15 +145,33 @@ export class CustomizeComponent implements OnInit {
   }
 
   private addToOrder() {
-    console.log('basePiza', this.basePizza);
-    console.log('pizza', this.pizza);    
-    console.log('xtraToppigs', this.xtraToppings)
     let newPizza = JSON.parse(JSON.stringify(this.pizza));
     let newXtraToppings = JSON.parse(JSON.stringify(this.xtraToppings));
     newPizza.xtraToppings = newXtraToppings;
-    console.log('newPizza', newPizza);    
-    this.orderService.addCustomizedPizza(newPizza).subscribe();
+    console.log('newPizza', newPizza);        
+    this.orderService.addCustomizedPizza(newPizza, this.basePizza).subscribe();
     this.cancelOrder();
+  }
+
+  private edit() {
+    this.orderService.getEditItem().subscribe(item => {
+      console.log('item to edit', item);
+      this.pizza = item;
+      this.pizzaService.getBasePizza().subscribe(base => {
+        this.basePizza = base;
+        this.addStandardToppingsToBase(this.pizza.toppings);
+        this.addExistingXtraToppingsToBase();
+      })
+    })
+  }
+
+  private addExistingXtraToppingsToBase() {    
+    for(let topping of this.pizza.xtraToppings) {
+      this.xtraToppings.push(topping);
+      let type = topping.type.find(type => type.location = topping.location);
+      console.log('type', type)
+      this.basePizza.xtraToppings.push({ name: topping.name, img: type.img });
+    }
   }
 }
 

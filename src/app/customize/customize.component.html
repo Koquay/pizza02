@@ -45,8 +45,7 @@
                                                         <input type="radio" class="mr-1" name="{{topping.name}}" id="{{type.location}}" [(ngModel)]="topping.location" [value]="type.location"
                                                             checked="type.location=='none'" (change)="addXtraTopping(topping, type.img)">
                                                     </ng-container>
-                                                    <input type="checkbox" class="ml-2" [(ngModel)]="topping.double" 
-                                                        (change)="setLocation(topping)">
+                                                    <input type="checkbox" class="ml-2" [(ngModel)]="topping.double" (change)="setLocation(topping)">
                                                 </div>
                                             </div>
                                         </div>
@@ -118,8 +117,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 d-lg-flex col-md-6 col-lg-7 order-0 order-md-1 mb-2" id="customize-col">
-                <div class="row" *ngIf="basePizza">
+            <div class="col-12 d-lg-flex col-md-6 col-lg-7 order-0 order-md-1 mb-2" id="customize-col"
+                *ngIf="pizza">
+                <div class="row mb-2">
+                    <div class="col-12 text-center">
+                        <h4 class="primary-color">{{pizza.name}}</h4>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12 d-flex justify-content-center" id="create-col">
                         <img class="img-fluid" id="base" src="assets/img/{{basePizza.img}}">
                         <img *ngFor="let topping of basePizza.toppings" class="img-fluid" id="base" src="assets/img/{{topping}}">
@@ -134,18 +139,16 @@
                                     <i class="fa fa-minus-square"></i>
                                 </a>
                                 <span id="quantity" class="mx-2 font-weight-bold f-1pt5">{{pizza.quantity}}</span>
-                                <a class="d-lg-flex align-items-lg-center"  (click)="increaseQuantity()">
+                                <a class="d-lg-flex align-items-lg-center" (click)="increaseQuantity()">
                                     <i class="fa fa-plus-square"></i>
                                 </a>
                             </span>
                             <span class="font-weight-bold f-1pt5">{{computePrice() | currency:'USD':'symbol-narrow'}}</span>
                             <span class="d-lg-flex align-items-lg-center">
-                                <button class="btn btn-primary btn-sm font-weight-bold" type="button"
-                                    (click)="addToOrder()">
+                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" (click)="addToOrder()">
                                     ADD
                                 </button>
-                                <a id="cancel" class="d-block ml-lg-3" (click)="cancelOrder()" 
-                                    style="/*color: #f9501c;*/">
+                                <a id="cancel" class="d-block ml-lg-3" (click)="cancelOrder()" style="/*color: #f9501c;*/">
                                     Cancel
                                 </a>
                             </span>
@@ -164,7 +167,7 @@
                                 <ol class="pl-4">
                                     <li *ngFor="let topping of xtraToppings">
                                         {{displaySelection(topping)}}
-                                    </li>                                    
+                                    </li>
                                 </ol>
                             </div>
                         </div>

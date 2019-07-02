@@ -24,7 +24,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <!-- <div class="form-row">
                                 <div class="col">
                                     <div class="form-row" *ngFor="let item of order">
                                         <div class="col-2">
@@ -42,12 +42,47 @@
                                             </a>
                                         </div>
                                         <div class="col-2 d-flex justify-content-end align-items-center price">
-                                            <span>{{item.price * item.quantity | currency:'USD':'symbol-narrow'}}</span>
+                                            <span>{{getItemPrice(item) | currency:'USD':'symbol-narrow'}}</span>
                                         </div>
                                         <div class="col-12">
                                             <hr>
                                         </div>
                                     </div>
+                                </div>
+                            </div> -->
+                            <div class="form-row d-flex align-items-center" *ngFor="let item of order">
+                                <div class="col-2">
+                                    <img class="img-fluid" src="assets/img/{{item.img}}" />
+                                </div>
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <span class="d-flex">{{item.name}}</span>
+                                </div>
+                                <div class="col-3 d-flex flex-column justify-content-center quantity">
+                                    <p class="text-center mb-0">
+                                        <a (click)="decreaseQuantity(item)">
+                                            <i class="fa fa-minus-square mr-2 add"></i>
+                                        </a>
+                                        <span>{{item.quantity}}</span>
+                                        <a (click)="increaseQuantity(item)">
+                                            <i class="fa fa-plus-square ml-2 add"></i>
+                                        </a>
+                                    </p>
+                                    <p class="text-center mb-0">
+                                        <a (click)="edit(item)">
+                                            <i class="fa fa-edit mr-2 add"></i>
+                                        </a>
+                                        <span class="mx-1"></span>
+
+                                        <a (click)="remove(item.uniqueId)">
+                                            <i class="fa fa-trash-o ml-2 add"></i>
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="col-2 d-flex justify-content-end align-items-center price">
+                                    <span>{{getItemPrice(item) | currency:'USD':'symbol-narrow'}}</span>
+                                </div>
+                                <div class="col-12">
+                                    <hr />
                                 </div>
                             </div>
                             <div class="form-row">
@@ -90,7 +125,7 @@
                                         </div>
                                         <div class="col-2 d-flex justify-content-end align-items-center font-weight-bold">
                                             <span class="font-weight-bold">
-                                                    {{getDiscount() | currency:'USD':'symbol-narrow'}}
+                                                {{getDiscount() | currency:'USD':'symbol-narrow'}}
                                             </span>
                                         </div>
                                     </div>
@@ -100,7 +135,7 @@
                                         </div>
                                         <div class="col-2 d-flex justify-content-end align-items-center">
                                             <span>
-                                                    {{getTotal() | currency:'USD':'symbol-narrow'}}
+                                                {{getTotal() | currency:'USD':'symbol-narrow'}}
                                             </span>
                                         </div>
                                     </div>

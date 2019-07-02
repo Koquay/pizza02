@@ -39,4 +39,9 @@ export class PizzaService {
     return forkJoin([of(pizzaToCustomize), of(basePizzaToCustomize)]);
   }
   
+  public getBasePizza() {
+    let basePizza = this.pizzas.find(base => base.name == 'BASE')
+    let basePizzaToCustomize = JSON.parse(JSON.stringify(basePizza));
+    return of(basePizzaToCustomize);
+  }
 }

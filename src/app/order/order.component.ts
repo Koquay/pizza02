@@ -10,7 +10,7 @@ export class OrderComponent implements OnInit {
   private order;
 
   constructor(
-    private orderServiice:OrderService
+    private orderService: OrderService
   ) { }
 
   ngOnInit() {
@@ -18,7 +18,7 @@ export class OrderComponent implements OnInit {
   }
 
   private getOrders() {
-    this.orderServiice.getOrder().subscribe(order => {
+    this.orderService.getOrder().subscribe(order => {
       this.order = order;
       console.log('order', this.order)
     })
@@ -33,8 +33,7 @@ export class OrderComponent implements OnInit {
   private decreaseQuantity(item) {
     console.log('item quantity', item.quantity)
 
-    if(item.quantity > 1)
-    {
+    if (item.quantity > 1) {
       item.quantity -= 1;
       console.log('item', item)
     }
@@ -43,8 +42,8 @@ export class OrderComponent implements OnInit {
   private getSubtotal() {
     let subtotal = 0;
 
-    for(let item of this.order) {
-      subtotal += item.price * item.quantity;
+    for (let item of this.order) {
+      subtotal += this.getItemPrice(item);
     }
 
     return subtotal;
@@ -66,5 +65,33 @@ export class OrderComponent implements OnInit {
     return this.getSubtotal() + this.getGstHst() + this.getDeliveryCharge() - this.getDiscount();
   }
 
+  public getItemPrice(item) {
+    let xtraToppingsPrice = 0;
 
+    if (item.xtraToppings) {
+      for (let topping of item.xtraToppings) {
+        if (topping.double) {
+          xtraToppingsPrice += topping.price * 2;
+        } else {
+          xtraToppingsPrice += topping.price;
+        }
+      }
+    }
+
+    let price = (item.price + xtraToppingsPrice) * item.quantity;
+
+    return price;
+  }
+
+  private remove(uniqueId) {
+    let itemIndex = this.order.findIndex(item => item.uniqueId == uniqueId);
+
+    if(itemIndex >= 0) {
+      this.order.splice(itemIndex, 1);
+    }
+  }
+
+  private edit(item) {
+    this.orderService.edit(item).subscribe();
+  }
 }
