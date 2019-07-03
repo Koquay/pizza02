@@ -17,6 +17,10 @@ $gray: #f7f7f7;
     
     .delivery {
         background: $gray;   
+
+        #delivery-address {
+            transition: 1s;
+        }
     }
     
     #order-title {

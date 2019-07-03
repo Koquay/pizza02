@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from './order.service';
+import { Delivery } from './delivery';
 
 @Component({
   selector: 'app-order',
@@ -8,10 +9,13 @@ import { OrderService } from './order.service';
 })
 export class OrderComponent implements OnInit {
   private order;
+  private delivery: Delivery;
 
   constructor(
     private orderService: OrderService
-  ) { }
+  ) {
+    this.delivery = new Delivery();
+  }
 
   ngOnInit() {
     this.getOrders();
@@ -54,7 +58,11 @@ export class OrderComponent implements OnInit {
   }
 
   private getDeliveryCharge() {
-    return 5.00;
+    if (this.delivery.method == 'Delivery') {
+      return 5.00;
+    } else {
+      return 0;
+    }
   }
 
   private getDiscount() {
@@ -86,12 +94,35 @@ export class OrderComponent implements OnInit {
   private remove(uniqueId) {
     let itemIndex = this.order.findIndex(item => item.uniqueId == uniqueId);
 
-    if(itemIndex >= 0) {
+    if (itemIndex >= 0) {
       this.order.splice(itemIndex, 1);
+      console.log('item after delete', this.order)
     }
   }
 
   private edit(item) {
     this.orderService.edit(item).subscribe();
+  }
+
+  private getItemDescription(item) {
+    var description = item.name;
+
+    if (item.xtraToppings) {
+      description = description + " w/ ";
+
+      item.xtraToppings.forEach((topping, index) => {
+        if (index == item.xtraToppings.length - 1) {
+          description = description + " and " + topping.title;
+        } else {
+          description = description + topping.title + ", ";
+        }
+      });
+    }
+
+    return description;
+  }
+
+  private showDelivery() {
+    console.log('delivery', this.delivery)
   }
 }

@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container">
     <section id="order">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
                 <h2 id="order-title">Your Order</h2>
             </div>
@@ -24,38 +24,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="form-row">
-                                <div class="col">
-                                    <div class="form-row" *ngFor="let item of order">
-                                        <div class="col-2">
-                                            <img class="img-fluid" src="assets/img/{{item.img}}"></div>
-                                        <div class="col d-flex justify-content-center align-items-center">
-                                            <span class="d-flex">{{item.name}}</span>
-                                        </div>
-                                        <div class="col-3 d-flex justify-content-center align-items-center quantity">
-                                            <a (click)="decreaseQuantity(item)">
-                                                <i class="fa fa-minus-square mr-2 add"></i>
-                                            </a>
-                                            <span>{{item.quantity}}</span>
-                                            <a (click)="increaseQuantity(item)">
-                                                <i class="fa fa-plus-square ml-2 add"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-2 d-flex justify-content-end align-items-center price">
-                                            <span>{{getItemPrice(item) | currency:'USD':'symbol-narrow'}}</span>
-                                        </div>
-                                        <div class="col-12">
-                                            <hr>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <div class="form-row d-flex align-items-center" *ngFor="let item of order">
+                            <div class="form-row d-flex align-items-start" *ngFor="let item of order">
                                 <div class="col-2">
                                     <img class="img-fluid" src="assets/img/{{item.img}}" />
                                 </div>
-                                <div class="col d-flex justify-content-center align-items-center">
-                                    <span class="d-flex">{{item.name}}</span>
+                                <div class="col d-flex justify-content-start align-items-center">
+                                    <span class="d-flex">{{getItemDescription(item)}}</span>
                                 </div>
                                 <div class="col-3 d-flex flex-column justify-content-center quantity">
                                     <p class="text-center mb-0">
@@ -95,7 +69,7 @@
                                             <span>{{getSubtotal() | currency:'USD':'symbol-narrow'}}</span>
                                         </div>
                                     </div>
-                                    <div class="form-row">
+                                    <div class="form-row" *ngIf="delivery.method=='Delivery'">
                                         <div class="col d-flex justify-content-end align-items-center mr-4">
                                             <span class="d-flex">Delivery Charge</span>
                                         </div>
@@ -130,6 +104,9 @@
                                         </div>
                                     </div>
                                     <div class="form-row font-weight-bold f-1pt2 mb-4">
+                                        <div class="col-12">
+                                            <hr>
+                                        </div>
                                         <div class="col d-flex justify-content-end align-items-center mr-4">
                                             <span class="d-flex">Total</span>
                                         </div>
@@ -147,44 +124,75 @@
                                 <div class="col delivery p-4">
                                     <div class="form-row">
                                         <div class="col-12">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"
-                                                    checked="" name="delivery-method"><label class="form-check-label" for="formCheck-1">Pick
-                                                    Up
-                                                </label></div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" id="formCheck-1"
+                                                    name="deliveryMethod" [(ngModel)]="delivery.method"
+                                                    value="PickUp" (change)="showDelivery()">
+                                                <label class="form-check-label" for="formCheck-1">
+                                                    Pick Up
+                                                </label>
+                                            </div>
                                         </div>
                                         <div class="col-12 mt-2">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"
-                                                    name="delivery-method"><label class="form-check-label" for="formCheck-1">Delivery</label></div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" id="formCheck-2" name="delivery-method" 
+                                                    name="deliveryMethod" [(ngModel)]="delivery.method"
+                                                    value="Delivery" (change)="showDelivery()">
+                                                <label class="form-check-label" for="formCheck-2">Delivery</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="form-row mt-2">
                                                 <div class="col-12"><span>Name:</span></div>
-                                                <div class="col col-md-6 col-lg-12"><input class="form-control" type="text"></div>
+                                                <div class="col col-md-6 col-lg-12">
+                                                    <input class="form-control" type="text">
+                                                </div>
                                             </div>
                                             <div class="form-row mt-2">
-                                                <div class="col-12"><span>Telephone:</span></div>
-                                                <div class="col col-md-6 col-lg-12"><input class="form-control" type="text"></div>
+                                                <div class="col-12">
+                                                    <span>Telephone:</span>
+                                                </div>
+                                                <div class="col col-md-6 col-lg-12">
+                                                    <input class="form-control" type="text">
+                                                </div>
                                             </div>
-                                            <div class="form-row mt-2">
-                                                <div class="col-12"><span>Address:</span></div>
-                                                <div class="col col-md-6 col-lg-12"><input class="form-control" type="text"></div>
-                                            </div>
-                                            <div class="form-row mt-2">
-                                                <div class="col-12"><span>City:</span></div>
-                                                <div class="col col-md-6 col-lg-12"><input class="form-control" type="text"></div>
-                                            </div>
-                                            <div class="form-row mt-2">
-                                                <div class="col-12"><span>Delivery Instructions; (If any):</span></div>
-                                                <div class="col col-md-6 col-lg-12"><textarea class="form-control"></textarea></div>
-                                            </div>
+                                            <ng-container *ngIf="delivery.method=='Delivery'" id="delivery-address">
+                                                <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>Address:</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <input class="form-control" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>City:</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <input class="form-control" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>Delivery Instructions; (If any):</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <textarea class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
                                         </div>
                                     </div>
                                     <div class="form-row mt-4">
-                                        <div class="col-12 text-center"><button class="btn btn-primary view-order w-75" type="button">Place
-                                                Order
-                                            </button></div>
+                                        <div class="col-12 text-center">
+                                            <button class="btn btn-primary view-order w-75" type="button"
+                                                [disabled]="!order.length">
+                                                <strong>Place Order</strong>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

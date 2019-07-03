@@ -117,8 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 d-lg-flex col-md-6 col-lg-7 order-0 order-md-1 mb-2" id="customize-col"
-                *ngIf="pizza">
+            <div class="col-12 d-lg-flex col-md-6 col-lg-7 order-0 order-md-1 mb-2" id="customize-col" *ngIf="pizza">
                 <div class="row mb-2">
                     <div class="col-12 text-center">
                         <h4 class="primary-color">{{pizza.name}}</h4>
@@ -145,8 +144,12 @@
                             </span>
                             <span class="font-weight-bold f-1pt5">{{computePrice() | currency:'USD':'symbol-narrow'}}</span>
                             <span class="d-lg-flex align-items-lg-center">
-                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" (click)="addToOrder()">
+                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" *ngIf="!editId"
+                                    (click)="addToOrder()">
                                     <span *ngIf="!editId">ADD</span>
+                                </button>
+                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" *ngIf="editId"
+                                    (click)="saveOrder()">
                                     <span *ngIf="editId">SAVE</span>
                                 </button>
                                 <a id="cancel" class="d-block ml-lg-3" (click)="cancelOrder()" style="/*color: #f9501c;*/">

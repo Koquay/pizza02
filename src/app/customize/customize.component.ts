@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomizeService } from './customize.service';
-import { ActivatedRoute, } from '@angular/router';
+import { ActivatedRoute, Router, } from '@angular/router';
 import { PizzaService } from '../pizza/pizza.service';
 import { OrderService } from '../order/order.service';
 
@@ -20,7 +20,8 @@ export class CustomizeComponent implements OnInit {
     private customizeService: CustomizeService,
     private activatedRoute: ActivatedRoute,
     private pizzaService: PizzaService,
-    private orderService:OrderService
+    private orderService:OrderService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -154,6 +155,12 @@ export class CustomizeComponent implements OnInit {
     console.log('newPizza', newPizza);        
     this.orderService.addCustomizedPizza(newPizza, this.basePizza).subscribe();
     this.cancelOrder();
+  }
+
+  private saveOrder() {
+    this.addToOrder();
+    this.router.navigate(['/order'])
+    
   }
 
   private edit() {
