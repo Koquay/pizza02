@@ -21,6 +21,14 @@ const routes: Routes = [
     loadChildren: './customize/customize.module#CustomizeModule'
   },
   {
+    path: 'chicken',
+    loadChildren: './chicken/chicken.module#ChickenModule'
+  },
+  {
+    path: 'chicken-customizer',
+    loadChildren: './chicken-customizer/chicken-customizer.module#ChickenCustomizerModule'
+  },
+  {
     path: '',
     pathMatch: 'prefix',
     redirectTo: 'home'

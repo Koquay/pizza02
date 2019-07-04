@@ -11,6 +11,10 @@ const ToppingsSchema = new Schema({
         type: String,
         required: true
     },
+    kind: {
+        type: String,
+        required: true
+    },
     price: {
         type: Number,       
         required: true
@@ -33,6 +37,14 @@ const ToppingsSchema = new Schema({
             img:String
         }
     ],
+    quantity:[
+        {
+            amount:String
+        }
+    ],
+    amount: {
+        type: String,       
+    },
     createdOn: {
         type:Date,
         default: Date.now

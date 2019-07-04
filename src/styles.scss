@@ -29,3 +29,26 @@
   .primary-color {
     color: $primary;
   }
+
+  .increase-quantity {
+    div {
+        background: $gray;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 12px;
+    
+        i {
+            background: white;
+            color: $primary;
+            font-size:2em;
+        
+            &:hover {
+                color: $tertiary !important;
+            }
+        }
+                
+        @media(min-width: 992px) {
+            width: 80%;
+        }
+    }
+}

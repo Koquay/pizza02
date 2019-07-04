@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CustomizeService {
-  private toppingsUrl = '/api/toppings';
+  private toppingsUrl = '/api/toppings?kind=pizza';
 
   constructor(
     private httpClient:HttpClient

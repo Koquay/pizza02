@@ -10,7 +10,7 @@ import { of, forkJoin } from 'rxjs';
   providedIn: 'root'
 })
 export class PizzaService {
-  private menuUrl = '/api/menu';
+  private menuUrl = '/api/menu?menuItem=pizza';
   private pizzas;
 
   constructor(
@@ -45,3 +45,5 @@ export class PizzaService {
     return of(basePizzaToCustomize);
   }
 }
+
+

@@ -42,7 +42,8 @@
                                             <div class="row mt-2">
                                                 <div class="col d-flex justify-content-center">
                                                     <ng-container *ngFor="let type of topping.type">
-                                                        <input type="radio" class="mr-1" name="{{topping.name}}" id="{{type.location}}" [(ngModel)]="topping.location" [value]="type.location"
+                                                        <input type="radio" class="mr-1" name="{{topping.name}}" id="{{type.location}}" 
+                                                            [(ngModel)]="topping.location" [value]="type.location"
                                                             checked="type.location=='none'" (change)="addXtraTopping(topping, type.img)">
                                                     </ng-container>
                                                     <input type="checkbox" class="ml-2" [(ngModel)]="topping.double" (change)="setLocation(topping)">

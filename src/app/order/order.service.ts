@@ -28,27 +28,27 @@ export class OrderService {
     return of(this.order);
   }
 
-  public addCustomizedPizza(pizza, basePizza) {
-    this.basePizza = basePizza;
-    this.addToOrder(pizza);
-    return of();
-  }
+  // public addCustomizedPizza(pizza, basePizza) {
+  //   // this.basePizza = basePizza;
+  //   this.addToOrder(pizza);
+  //   return of();
+  // }
 
-  private computeItemPrice(item) {
-    let xtraToppingsPrice = 0;
+  // private computeItemPrice(item) {
+  //   let xtraToppingsPrice = 0;
 
-    for (let topping of item.xtraToppings) {
-      if (topping.double) {
-        xtraToppingsPrice += topping.price * 2;
-      } else {
-        xtraToppingsPrice += topping.price;
-      }
-    }
+  //   for (let topping of item.xtraToppings) {
+  //     if (topping.double) {
+  //       xtraToppingsPrice += topping.price * 2;
+  //     } else {
+  //       xtraToppingsPrice += topping.price;
+  //     }
+  //   }
 
-    item.price = (item.price + xtraToppingsPrice) * item.quantity;
+  //   item.price = (item.price + xtraToppingsPrice) * item.quantity;
 
-    return item;
-  }
+  //   return item;
+  // }
 
   private addUniqueId(item) {
     item.uniqueId = Math.random();
@@ -63,7 +63,7 @@ export class OrderService {
       console.log('order after delete', this.order)
     }
     this.editItem.uniqueId = "";
-    this.router.navigate(['/customize']);
+    this.router.navigate([this.editItem.customizer]);
     return of();
   }
 
