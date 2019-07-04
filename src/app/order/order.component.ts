@@ -91,6 +91,17 @@ export class OrderComponent implements OnInit {
     return price;
   }
 
+  // private computePrice() {
+  //   var saucePrice = 0;
+
+  //   for (let sauce of this.xtraToppings) {
+  //     let tmpPrice = sauce.price;
+  //     if (sauce.amount == 'heavy') {
+  //       tmpPrice *= 2;
+  //     }
+  //     saucePrice += tmpPrice;
+  //   }
+
   private remove(uniqueId) {
     let itemIndex = this.order.findIndex(item => item.uniqueId == uniqueId);
 

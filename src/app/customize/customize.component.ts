@@ -154,7 +154,6 @@ export class CustomizeComponent implements OnInit {
     newPizza.xtraToppings = newXtraToppings;
     console.log('newPizza', newPizza);        
     newPizza.customizer = '/customize'
-    // this.orderService.addCustomizedPizza(newPizza, this.basePizza).subscribe();
     this.orderService.addToOrder(newPizza).subscribe();
     this.cancelOrder();
   }

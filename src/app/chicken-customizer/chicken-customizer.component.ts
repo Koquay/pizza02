@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChickenCustomizerService } from './chicken-customizer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChickenService } from '../chicken/chicken.service';
 import { OrderService } from '../order/order.service';
 
@@ -19,7 +19,8 @@ export class ChickenCustomizerComponent implements OnInit {
     private chickenCustomizerService: ChickenCustomizerService,
     private chickenService: ChickenService,
     private activatedRoute: ActivatedRoute,
-    private orderService:OrderService
+    private orderService:OrderService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -40,6 +41,12 @@ export class ChickenCustomizerComponent implements OnInit {
 
     if (index >= 0) {
       this.xtraToppings.splice(index, 1);
+    }
+
+    if(sauce.amount == 'heavy') {
+      sauce.double = true;
+    } else {
+      sauce.double = false;
     }
 
     if (sauce.amount !== 'none') {
@@ -94,9 +101,8 @@ export class ChickenCustomizerComponent implements OnInit {
     newChicken.xtraToppings = JSON.parse(JSON.stringify(this.xtraToppings));
     console.log('newChicken', newChicken);    
     newChicken.customizer = '/chicken-customizer';
-    // this.orderService.addCustomizedPizza(newPizza, this.basePizza).subscribe();
     this.orderService.addToOrder(newChicken).subscribe();
-    // this.cancelOrder();
+    this.cancelOrder();
   }
 
   private edit() {
@@ -104,7 +110,34 @@ export class ChickenCustomizerComponent implements OnInit {
       console.log('item to edit', item);
       this.editId ='edited';
       this.chicken = item;
+      this.xtraToppings = item.xtraToppings;
+      this.setSauceAmounts();
     })
   }
 
+  private cancelOrder() {
+    this.xtraToppings = [];    
+    this.chicken.quantity = 1;
+    this.chicken.amount = 'none';
+    this.getSauces();
+  }
+
+
+  private setSauceAmounts() {
+    this.chickenCustomizerService.getSauces().subscribe(sauces => {
+      console.log('sauces', sauces);
+      this.sauces = sauces;
+
+      for(let topping of this.xtraToppings) {
+        let sauce = this.sauces.find(sauce => sauce.name == topping.name);
+        sauce.amount = topping.amount;
+      }
+    })    
+  }
+
+  private saveOrder() {
+    this.addToOrder();
+    this.router.navigate(['/order'])
+    
+  }
 }
