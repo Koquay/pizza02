@@ -7,13 +7,11 @@
                 <h1 id="title">PIZZAS</h1>
             </div>
             <div class="col-12 text-center">
-                <button class="btn btn-primary view-order" type="button" [routerLink]="['/order']">
-                    <strong>VIEW ORDER</strong>
-                </button>
+                <app-view-cart></app-view-cart>
             </div>
         </div>
         <div class="row my-4" *ngIf="pizzas">
-            <div class="col-12 col-md-6 col-lg-4" *ngFor="let pizza of pizzas">
+            <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let pizza of pizzas">
                 <div class="card text-center py-4">
                     <h4>{{pizza.name}}</h4>
                     <img class="card-img w-100 d-block" src="assets/img/{{pizza.img}}">

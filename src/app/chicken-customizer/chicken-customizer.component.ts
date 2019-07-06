@@ -140,4 +140,22 @@ export class ChickenCustomizerComponent implements OnInit {
     this.router.navigate(['/order'])
     
   }
+
+  private displaySelection(topping) {
+    var amount;
+
+      if(topping.double) {
+        amount = 'heavy'
+      } else {
+        amount = 'some'        
+      }
+
+      // let location = `${topping.location} side`;
+
+      // if(topping.location == 'both') {
+      //   location = `${location}s`
+      // }
+
+      return `${topping.title},  ${amount}`
+  }
 }

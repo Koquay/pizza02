@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChickenService } from './chicken.service';
+import { OrderService } from '../order/order.service';
 
 @Component({
   selector: 'app-chicken',
@@ -10,7 +11,8 @@ export class ChickenComponent implements OnInit {
   private chicken;
 
   constructor(
-    private chickenService:ChickenService
+    private chickenService:ChickenService,
+    private orderService:OrderService
   ) { }
 
   ngOnInit() {
@@ -24,8 +26,29 @@ export class ChickenComponent implements OnInit {
     })
   }
 
-  private addToOrder(chick) {
+  private increaseQuantity(chicken) {
+    console.log('chicken quantity', chicken.quantity)
+    chicken.quantity += 1;
+    console.log('chicken', chicken)
+    console.log('chicken', this.chicken)
+  }
+
+  private decreaseQuantity(chicken) {
+    console.log('chicken quantity', chicken.quantity)
+
+    if(chicken.quantity > 1)
+    {
+      chicken.quantity -= 1;
+      console.log('chicken', chicken)
+      console.log('chicken', this.chicken)
+    }
     
   }
+
+  private addToOrder(chick) {
+    console.log('add item', chick)
+    let chickToAdd = JSON.parse(JSON.stringify(chick))
+    this.orderService.addToOrder(chickToAdd).subscribe()
+}
 
 }

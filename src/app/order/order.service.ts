@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class OrderService {
-  private order = [];
+  public order = [];
   private basePizza;
   private editItem;
 
@@ -27,28 +27,6 @@ export class OrderService {
   public getOrder() {
     return of(this.order);
   }
-
-  // public addCustomizedPizza(pizza, basePizza) {
-  //   // this.basePizza = basePizza;
-  //   this.addToOrder(pizza);
-  //   return of();
-  // }
-
-  // private computeItemPrice(item) {
-  //   let xtraToppingsPrice = 0;
-
-  //   for (let topping of item.xtraToppings) {
-  //     if (topping.double) {
-  //       xtraToppingsPrice += topping.price * 2;
-  //     } else {
-  //       xtraToppingsPrice += topping.price;
-  //     }
-  //   }
-
-  //   item.price = (item.price + xtraToppingsPrice) * item.quantity;
-
-  //   return item;
-  // }
 
   private addUniqueId(item) {
     item.uniqueId = Math.random();

@@ -4,8 +4,8 @@
         <div class="col text-center">
             <h1 class="page-header">CREATE YOUR OWN</h1>
         </div>
-        <div class="col-12 text-center"><button class="btn btn-primary view-order" type="button">
-                <strong>VIEW ORDER</strong></button>
+        <div class="col-12 text-center">
+            <app-view-cart></app-view-cart>
         </div>
     </div>
     <section id="customize-pizza-section" class="my-5">
@@ -42,8 +42,7 @@
                                             <div class="row mt-2">
                                                 <div class="col d-flex justify-content-center">
                                                     <ng-container *ngFor="let type of topping.type">
-                                                        <input type="radio" class="mr-1" name="{{topping.name}}" id="{{type.location}}" 
-                                                            [(ngModel)]="topping.location" [value]="type.location"
+                                                        <input type="radio" class="mr-1" name="{{topping.name}}" id="{{type.location}}" [(ngModel)]="topping.location" [value]="type.location"
                                                             checked="type.location=='none'" (change)="addXtraTopping(topping, type.img)">
                                                     </ng-container>
                                                     <input type="checkbox" class="ml-2" [(ngModel)]="topping.double" (change)="setLocation(topping)">
@@ -145,12 +144,10 @@
                             </span>
                             <span class="font-weight-bold f-1pt5">{{computePrice() | currency:'USD':'symbol-narrow'}}</span>
                             <span class="d-lg-flex align-items-lg-center">
-                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" *ngIf="!editId"
-                                    (click)="addToOrder()">
+                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" *ngIf="!editId" (click)="addToOrder()">
                                     <span *ngIf="!editId">ADD</span>
                                 </button>
-                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" *ngIf="editId"
-                                    (click)="saveOrder()">
+                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" *ngIf="editId" (click)="saveOrder()">
                                     <span *ngIf="editId">SAVE</span>
                                 </button>
                                 <a id="cancel" class="d-block ml-lg-3" (click)="cancelOrder()" style="/*color: #f9501c;*/">
