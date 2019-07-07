@@ -1,0 +1,53 @@
+$primary: #a30000; 
+$secondary: #dd2c00;
+$tertiary: #ff6434;
+$gray: #f7f7f7;
+
+#chicken-section {
+    .product-title {
+        color: $primary;
+        letter-spacing: 1rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        
+    }
+    
+    .card {       
+        h5 {
+            color: $primary;
+            padding-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            
+            @media(min-width: 992px) {
+                font-size: 1.4rem;
+            }
+        }
+        
+        p {
+            font-size: 1.2rem; 
+        }
+        
+        button {
+            font-weight: bold;
+            margin-top: 1rem;
+            min-width: 8.25rem;
+        }
+        
+        .add-toppings {
+            background: $tertiary !important;
+            
+            &:hover {
+                background: $secondary !important;
+            }
+        }
+        
+        .add-to-cart {
+            background: $tertiary !important;
+            
+            &:hover {
+                background: $secondary !important;
+            }
+        }
+    }
+}

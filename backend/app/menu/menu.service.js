@@ -13,6 +13,8 @@ exports.get = async (menuItem) => {
     }
 
     try {
+        await Menu.updateMany({item:"sides"}, {$set: {customizable: false}}, {multi: true});
+
         const menu = await Menu.find({ item: menuItem });
         console.log('menu', menu);
         return menu;

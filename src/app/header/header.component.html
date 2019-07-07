@@ -2,29 +2,34 @@
     <header>
         <nav class="navbar navbar-light navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand font-weight-bold" [routerLink]="['/home']">MOUNTAIN PIZZA<br></a><a href="home.html"><img src="assets/img/logo.png"></a><span class="telephone ml-0 ml-lg-3">1 800 999 9999</span><button data-toggle="collapse" class="navbar-toggler"
-                    data-target="#navcol-2"><i class="fa fa-bars"></i></button>
+                <a class="navbar-brand font-weight-bold" [routerLink]="['/home']">MOUNTAIN PIZZA<br></a><a href="home.html"><img
+                        src="assets/img/logo.png"></a><span class="telephone ml-0 ml-lg-3">1 800 999 9999</span><button data-toggle="collapse"
+                    class="navbar-toggler" data-target="#navcol-2"><i class="fa fa-bars"></i></button>
                 <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navcol-2">
                     <ul class="nav navbar-nav">
                         <li class="nav-item" role="presentation">
-                          <a class="nav-link active" [routerLink]="['/customize']">Create Your Own<br></a>
+                            <a class="nav-link active" [routerLink]="['/customize']">Create Your Own<br></a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" [routerLink]="['/pizza']">
+                            <a class="nav-link" [routerLink]="['/pizza']" routerLinkActive="active">
                                 Pizzas<br>
-                              </a>
-                          </li>
+                            </a>
+                        </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" [routerLink]="['/chicken']">
+                            <a class="nav-link" [routerLink]="['/product', 'chicken']" routerLinkActive="active">
                                 Chicken<br>
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" [routerLink]="['/salads']">
+                            <a class="nav-link" [routerLink]="['/product', 'salads']" routerLinkActive="active">
                                 Salads<br>
                             </a>
                         </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="sides.html">Sides<br></a></li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" [routerLink]="['/product', 'sides']"routerLinkActive="active">
+                                Sides<br>
+                            </a>
+                        </li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="breads.html">Breads<br></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="drinks.html">Drinks<br></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="dippings.html">Dipping Sauce<br></a></li>
@@ -34,4 +39,4 @@
             </div>
         </nav>
     </header>
-  </div>
+</div>

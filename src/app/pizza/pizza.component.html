@@ -1,56 +1,60 @@
-<app-header></app-header>
+<ng-container *ngIf="pizzas">
 
-<div class="container" id="main-container">
-    <section id="pizza-section">
-        <div class="row">
-            <div class="col text-center">
-                <h1 id="title">PIZZAS</h1>
+    <app-header></app-header>
+
+    <div class="container" id="main-container">
+        <section id="pizza-section">
+            <div class="row">
+                <div class="col text-center">
+                    <h1 id="title">PIZZAS</h1>
+                </div>
+                <div class="col-12 text-center">
+                    <app-view-cart></app-view-cart>
+                </div>
             </div>
-            <div class="col-12 text-center">
-                <app-view-cart></app-view-cart>
-            </div>
-        </div>
-        <div class="row my-4" *ngIf="pizzas">
-            <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let pizza of pizzas">
-                <div class="card text-center py-4">
-                    <h4>{{pizza.name}}</h4>
-                    <img class="card-img w-100 d-block" src="assets/img/{{pizza.img}}">
-                    <div class="card-body">
-                        <div class="col-12 d-flex d-lg-flex justify-content-center increase-quantity">
-                            <div class="d-flex justify-content-between">
-                                <span class="d-lg-flex align-items-lg-center">
-                                    <a class="d-lg-flex align-items-lg-center" (click)="decreaseQuantity(pizza)">
-                                        <i class="fa fa-minus-square"></i>
-                                    </a>
-                                    <span id="quantity" class="mx-2 font-weight-bold f-1pt5">
-                                        {{pizza.quantity}}
+            <div class="row my-4" *ngIf="pizzas">
+                <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let pizza of pizzas">
+                    <div class="card text-center py-4" *ngIf="pizza.name != 'BASE'">
+                        <h4>{{pizza.name}}</h4>
+                        <img class="card-img w-100 d-block" src="assets/img/{{pizza.img}}">
+                        <div class="card-body">
+                            <div class="col-12 d-flex d-lg-flex justify-content-center increase-quantity">
+                                <div class="d-flex justify-content-between">
+                                    <span class="d-lg-flex align-items-lg-center">
+                                        <a class="d-lg-flex align-items-lg-center" (click)="decreaseQuantity(pizza)">
+                                            <i class="fa fa-minus-square"></i>
+                                        </a>
+                                        <span id="quantity" class="mx-2 font-weight-bold f-1pt5">
+                                            {{pizza.quantity}}
+                                        </span>
+                                        <a class="d-lg-flex align-items-lg-center" (click)="increaseQuantity(pizza)">
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
                                     </span>
-                                    <a class="d-lg-flex align-items-lg-center" (click)="increaseQuantity(pizza)">
-                                        <i class="fa fa-plus-square"></i>
-                                    </a>
-                                </span>
-                                <span class="font-weight-bold f-1pt5">
-                                    {{pizza.price * pizza.quantity | currency:'USD':'symbol-narrow'}}
-                                </span>
+                                    <span class="font-weight-bold f-1pt5">
+                                        {{pizza.price * pizza.quantity | currency:'USD':'symbol-narrow'}}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6">
-                                <button class="btn btn-primary add-toppings" type="button" [routerLink]="['/customize', pizza._id]">
-                                    Add Toppings
-                                </button>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <button class="btn btn-primary add-to-cart" type="button" (click)="addToOrder(pizza)">
-                                    Add To Order
-                                </button>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <button class="btn btn-primary add-toppings" type="button" [routerLink]="['/customize', pizza._id]">
+                                        Add Toppings
+                                    </button>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <button class="btn btn-primary add-to-cart" type="button" (click)="addToOrder(pizza)">
+                                        Add To Order
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 
-<app-footer></app-footer>
+    <app-footer></app-footer>
+
+</ng-container>

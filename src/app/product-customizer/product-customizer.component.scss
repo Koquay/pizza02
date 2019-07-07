@@ -1,0 +1,180 @@
+$primary: #a30000; 
+$secondary: #dd2c00;
+// $primary: #dd2c00; 
+// $secondary: #a30000;
+$tertiary: #ff6434;
+$gray: #f7f7f7;
+
+body {
+    a {
+        text-decoration: none !important;
+    }
+  
+}
+
+
+
+.border-outset {
+    border: outset;
+}
+
+#header-container {
+    background: $secondary;
+    
+    nav {       
+        
+        a {
+            color: white;
+        }        
+        
+        ul {
+            background: white;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            
+             a {
+                 color: $primary; 
+                 
+                 &:hover {
+                     font-weight: bold;
+                 }
+              }  
+        
+            @media(min-width: 992px) {
+                background: $secondary;
+                padding-left: 0rem; 
+                margin-bottom: 0rem;
+                
+                a {
+                    color: white;   
+                }                
+            }
+        }
+    }
+    
+    i {
+        color: white;
+        font-size: 2rem;
+    }
+}
+
+.topping-select {   
+    input[type=radio] 
+    {
+        width: 2rem;
+        height: 1rem;
+    }             
+}
+
+#customize-col {
+    #create-col {
+        position: relative;
+        min-height: 22rem;
+
+        img {
+            position: absolute;    
+        }        
+    }  
+    
+    #add-column {
+        div {
+            background: $gray;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            
+            i {
+                background: white;
+                color: $primary;
+                font-size: 2rem;
+                
+                &:hover {
+                    color: $tertiary !important;
+                }
+            }
+            
+            button {
+                background: $primary;
+                border-radius: 8px;
+                
+                &:hover {
+                    background: $tertiary !important;
+                }
+            }
+            
+            #cancel {
+                color: $tertiary;
+                
+                &:hover {
+                    color: $primary;
+                }
+            }
+            
+            @media(min-width: 992px) {
+                width: 80%;
+            }
+        }
+    }
+    
+    #customization-list {
+        margin-bottom: 2rem;
+        
+        li {
+            font-size: 1.2rem;
+        }
+        
+        #items {
+            background: $gray;
+            padding-top: .5rem;
+        }
+        @media(min-width: 992px) {
+            padding: 0 5.5rem;    
+        }
+    }
+    
+    @media (min-width:992px) {
+        display: initial!important;
+    }
+}
+
+
+#accordion-1 {
+    .card-header {
+        background: $primary;
+        color: white;
+    
+        a {
+            color: white;   
+        }
+
+    }
+
+    .collapse {
+        p {
+            color: $primary;
+        }
+    }
+
+    section {
+        h6 {
+            color: $primary; 
+        }
+    }
+}
+
+.page-header {
+    color: $primary;
+    font-size: 1.5rem; 
+    letter-spacing: .5rem;
+    
+    @media(min-width: 768px) {
+        font-size: 2.5rem;
+    }
+    
+}
+
+
+footer {
+    background: $secondary;    
+}
+

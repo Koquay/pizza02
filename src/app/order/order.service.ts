@@ -18,10 +18,19 @@ export class OrderService {
 
   public addToOrder(item) {
     console.log('add item', item)
+    // this.removeExistingItem(item);
     this.addUniqueId(item);
     this.order.push(item);
     console.log('order', this.order)
     return of();
+  }
+
+  private removeExistingItem(editItem) {
+    let index = this.order.findIndex(item => item.uniqueId == editItem.uniqueId);
+    if(index >= 0) {
+      this.order.splice(index, 1);
+      console.log('delete unique id', this.order)
+    }
   }
 
   public getOrder() {

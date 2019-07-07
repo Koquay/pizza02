@@ -23,6 +23,10 @@ const MenuSchema = new Schema({
         type: Number,       
         default: 1
     },
+    customizable: {
+        type: Boolean,       
+        required: true
+    },
     toppings:[String],
     createdOn: {
         type:Date,

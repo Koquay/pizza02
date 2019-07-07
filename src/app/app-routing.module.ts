@@ -37,6 +37,14 @@ const routes: Routes = [
     loadChildren: './salad-customizer/salad-customizer.module#SaladCustomizerModule'
   },
   {
+    path: 'product',
+    loadChildren: './product/product.module#ProductModule'
+  },
+  {
+    path: 'product-customizer',
+    loadChildren: './product-customizer/product-customizer.module#ProductCustomizerModule'
+  },
+  {
     path: '',
     pathMatch: 'prefix',
     redirectTo: 'home'

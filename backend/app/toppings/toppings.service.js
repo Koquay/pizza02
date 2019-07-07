@@ -5,8 +5,8 @@ exports.get = async(kind) => {
     console.log('kind', kind);
     
     try {
-        // await Toppings.updateMany({kind:'salad', "quantity.amount[1]":'light'},
-        // {$set: {"quantity[1].amount": "single"}})         
+        // await Toppings.updateMany({kind:'salad'},
+        // {$set: {kind: "salads"}})         
 
         const toppings = await Toppings.find({kind:kind});
         console.log('toppings', toppings);
