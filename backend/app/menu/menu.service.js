@@ -13,9 +13,9 @@ exports.get = async (menuItem) => {
     }
 
     try {
-        await Menu.updateMany({item:"sides"}, {$set: {customizable: false}}, {multi: true});
+        await Menu.updateMany({item:"bread"}, {$set: {item: "breads"}}, {multi: true});
 
-        const menu = await Menu.find({ item: menuItem });
+        const menu = await Menu.find({ item: menuItem }).sort({"_id": 1});
         console.log('menu', menu);
         return menu;
     } catch (error) {

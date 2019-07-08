@@ -107,7 +107,7 @@ export class OrderComponent implements OnInit {
   private getItemDescription(item) {
     var description = item.name;
 
-    if (item.xtraToppings) {
+    if (item.xtraToppings.length) {
       description = description + " w/ ";
 
       item.xtraToppings.forEach((topping, index) => {

@@ -68,6 +68,7 @@ export class ProductComponent implements OnInit {
     } else {
       productToAdd.customizer = '/product/' + productToAdd.item;
     }  
+    productToAdd.xtraToppings = [];
     this.orderService.addToOrder(productToAdd).subscribe()
   }
 

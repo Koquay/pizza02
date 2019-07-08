@@ -12,25 +12,29 @@ export class OrderService {
   private editItem;
 
   constructor(
-    private customizeService:CustomizeService,
-    private router:Router
+    private customizeService: CustomizeService,
+    private router: Router
   ) { }
 
   public addToOrder(item) {
     console.log('add item', item)
-    // this.removeExistingItem(item);
+    this.removeEditedItem(item);
     this.addUniqueId(item);
     this.order.push(item);
     console.log('order', this.order)
     return of();
   }
 
-  private removeExistingItem(editItem) {
-    let index = this.order.findIndex(item => item.uniqueId == editItem.uniqueId);
-    if(index >= 0) {
-      this.order.splice(index, 1);
-      console.log('delete unique id', this.order)
-    }
+  private removeEditedItem(editItem) {
+    if(this.editItem) {
+      if (this.editItem.uniqueId == editItem.uniqueId) {
+        let index = this.order.findIndex(item => item.uniqueId == this.editItem.uniqueId);
+        if (index >= 0) {
+          this.order.splice(index, 1);
+          console.log('delete unique id', this.order)
+        }
+      }
+    }    
   }
 
   public getOrder() {
@@ -44,12 +48,12 @@ export class OrderService {
   public edit(item) {
     console.log('edit item', item)
     this.editItem = JSON.parse(JSON.stringify(item));
-    let index = this.order.findIndex(item => item.uniqueId == this.editItem.uniqueId);
-    if(index >= 0) {
-      this.order.splice(index, 1);
-      console.log('order after delete', this.order)
-    }
-    this.editItem.uniqueId = "";
+    // let index = this.order.findIndex(item => item.uniqueId == this.editItem.uniqueId);
+    // if(index >= 0) {
+    //   this.order.splice(index, 1);
+    //   console.log('order after delete', this.order)
+    // }
+    // this.editItem.uniqueId = "";
     this.router.navigate([this.editItem.customizer]);
     return of();
   }
