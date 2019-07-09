@@ -189,7 +189,7 @@
                                     <div class="form-row mt-4">
                                         <div class="col-12 text-center">
                                             <button class="btn btn-primary view-order w-75" type="button"
-                                                [disabled]="!order.length">
+                                                [disabled]="!order.length" (click)="placeOrder()">
                                                 <strong>Place Order</strong>
                                             </button>
                                         </div>

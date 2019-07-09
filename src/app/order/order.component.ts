@@ -9,7 +9,7 @@ import { Delivery } from './delivery';
 })
 export class OrderComponent implements OnInit {
   private order;
-  private delivery: Delivery;
+  private delivery: Delivery;  
 
   constructor(
     private orderService: OrderService
@@ -125,4 +125,40 @@ export class OrderComponent implements OnInit {
   private showDelivery() {
     console.log('delivery', this.delivery)
   }
+
+  private placeOrder() {
+
+    // this.order.delivery = this.delivery;
+    this.orderService.placeOrder(this.order).subscribe();
+  }
+
+  // private createOrder() {
+  //   let order;
+  //   let toppings = [];
+
+  //   order.name = this.order.name;
+  //   order.item = this.order.item;
+  //   order.orderCreatedAt = this.order.orderCreatedAt;
+  //   order.price = this.order.price;
+  //   order.quantity = this.order.quantity;
+  //   order.img = this.order.img;
+  //   order.img = this.order.img;
+  //   order.img = this.order.img;
+
+  //   for(let xtopping of this.order.xtraToppings) {
+  //     let topping;
+  //     topping.amount = xtopping.amount;
+  //     topping.double = xtopping.double;
+  //     topping.kind = xtopping.kind;
+  //     topping.location = xtopping.location;
+  //     topping.name = xtopping.name;
+  //     topping.price = xtopping.price;
+  //     topping.title = xtopping.title;
+  //     toppings.push(topping);      
+  //   }
+
+  //   order.toppings = toppings;
+
+  //   console.log('created order', order)  
+  // }
 }

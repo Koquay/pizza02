@@ -109,11 +109,12 @@ export class ProductCustomizerComponent implements OnInit {
   }
 
   private addToOrder() {
-    let newPrduct = JSON.parse(JSON.stringify(this.product));
-    newPrduct.xtraToppings = JSON.parse(JSON.stringify(this.xtraToppings));
-    console.log('newPrduct', newPrduct);    
-    newPrduct.customizer = '/product-customizer';
-    this.orderService.addToOrder(newPrduct).subscribe();
+    let newProduct = JSON.parse(JSON.stringify(this.product));
+    newProduct.xtraToppings = JSON.parse(JSON.stringify(this.xtraToppings));        
+    newProduct.customizer = '/product-customizer';
+    newProduct.orderCreatedAt = Date.now();
+    console.log('Product to add ', newProduct);
+    this.orderService.addToOrder(newProduct).subscribe();
     this.cancelOrder();
   }
 

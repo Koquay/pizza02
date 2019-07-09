@@ -26,22 +26,20 @@ export class PizzaComponent implements OnInit {
     });
   }
 
-  private addToOrder(pizza) {
-      console.log('add item', pizza)
+  private addToOrder(pizza) {      
       let pizzToAdd = JSON.parse(JSON.stringify(pizza))
+      pizzToAdd.orderCreatedAt = Date.now();
+      pizzToAdd.xtraToppings = [];
+      pizzToAdd.customizer = '/customize'
+      console.log('Product to add ', pizza)
       this.orderService.addToOrder(pizzToAdd).subscribe()
   }
 
   private increaseQuantity(pizza) {
-    console.log('pizza quantity', pizza.quantity)
     pizza.quantity += 1;
-    console.log('pizza', pizza)
-    console.log('pizza', this.pizzas)
   }
 
   private decreaseQuantity(pizza) {
-    console.log('pizza quantity', pizza.quantity)
-
     if(pizza.quantity > 1)
     {
       pizza.quantity -= 1;
