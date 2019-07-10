@@ -1,0 +1,130 @@
+<app-header></app-header>
+<div class="container main">
+    <div class="row text-center mb-4">
+        <div class="col"><span class="heading">Order<br></span></div>
+    </div>
+    <section id="address">
+        <div class="row mb-4 text-center">
+            <div class="col offset-lg-5 text-left">
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Name:</span>
+                        <span>{{order.delivery.name}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Telephone:</span>
+                        <span>{{order.delivery.telephone}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="order.delivery.method=='Delivery'">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Address:</span>
+                        <span>{{order.delivery.address}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="order.delivery.method=='Delivery'">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">
+                            City:
+                        </span>
+                        <span>{{order.delivery.city}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Delivery Method:</span>
+                        <span>{{order.delivery.method}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold"><strong>Order Time</strong>:</span>
+                        <span>{{order.created_on | date:'shortTime' }}<br></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Completed:</span>
+                        <input type="checkbox" [(ngModel)]="order.completed" (change)="setOrderStatus(order)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+    <section id="items">
+        <div class="row d-none d-lg-flex mb-2">
+            <div class="col">
+                <span class="font-weight-bold col-title">Item</span>
+            </div>
+            <div class="col-12 col-lg-4">
+                <span class="font-weight-bold col-title">Toppings</span>
+            </div>
+            <div class="col-2">
+                <span class="text-center font-weight-bold col-title">Quantity</span>
+            </div>
+            <div class="col-2 text-right">
+                <span class="font-weight-bold col-title">Price</span>
+            </div>
+        </div>
+        <div class="row mb-lg-0 mb-4" *ngFor="let item of order.orderItems">
+            <div class="col">
+                <span>{{item.name}}<br></span>
+            </div>
+            <div class="col-12 col-lg-4">
+                <ol class="pl-3">
+                    <li *ngFor="let topping of item.toppings">{{getToppingDetails(topping)}}<br></li>
+                </ol>
+            </div>
+            <div class="col-3 col-lg-2">
+                <span>{{item.quantity}}<br></span>
+            </div>
+            <div class="col-3 text-right col-lg-2"><span>{{getLineItemTotal(item) | currency:'USD':'symbol-narrow'}}<br></span></div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+    </section>
+    <section id="address">
+        <div class="row mb-4 text-lg-right">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Subtotal:</span>
+                        <span>{{getSubtotal() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">GST</span>
+                        <span>{{getGST() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col"><span class="mr-3 font-weight-bold">PST:</span>
+                        <span>{{getPST() | currency:'USD':'symbol-narrow'}}</span></div>
+                </div>
+                <div class="row">
+                    <div class="col"><span class="mr-3 font-weight-bold">Discount</span>
+                        <span>{{getDiscount() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Total</span>
+                        <span>{{getTotal() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>

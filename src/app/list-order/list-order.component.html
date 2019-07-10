@@ -1,0 +1,74 @@
+<app-header></app-header>
+<div class="container main" id="order-list">
+    <section id="pending-orders" class="">
+        <div class="row text-center mb-4">
+            <div class="col"><span class="heading">Pending Orders<br></span></div>
+        </div>
+        <div class="row d-none d-lg-flex mb-2">
+            <div class="col">
+                <span class="font-weight-bold col-title">Name</span>
+            </div>
+            <div class="col-12 col-lg-3">
+                <span class="font-weight-bold col-title">Telephone</span>
+            </div>
+            <div class="col-3">
+                <span class="text-center font-weight-bold col-title">Order Time</span>
+            </div>
+            <div class="col-2 text-right">
+                <span class="font-weight-bold col-title">Delivered/Picked up</span>
+            </div>
+        </div>
+        <div class="row mb-lg-2 mb-4" *ngFor="let order of pendingOrders">
+            <div class="col">
+                <a [routerLink]="['/display-order', order._id]">
+                    {{order.delivery.name}}<br>
+                </a>
+            </div>
+            <div class="col-12 col-lg-3">
+                <a [routerLink]="['/display-order', order._id]">
+                    {{order.delivery.telephone}}<br>
+                </a>
+            </div>
+            <div class="col-3 text-left col-lg-3">
+                <span class="">{{order.created_on | date:'shortTime' }}<br></span>
+            </div>
+            <div class="col-3 text-center col-lg-2"><span class="text-center">No<br></span></div>
+        </div>
+    </section>
+    <section>
+        <div class="row text-center mb-4">
+            <div class="col"><span class="heading">Completed Orders<br></span></div>
+        </div>
+        <div class="row d-none d-lg-flex mb-2">
+            <div class="col">
+                <span class="font-weight-bold col-title">Name</span>
+            </div>
+            <div class="col-12 col-lg-3">
+                <span class="font-weight-bold col-title">Telephone</span>
+            </div>
+            <div class="col-3">
+                <span class="text-center font-weight-bold col-title">Order Time:</span>
+            </div>
+            <div class="col-2 text-right">
+                <span class="font-weight-bold col-title">Delivered/Picked up</span>
+            </div>
+        </div>
+        <div class="row mb-lg-2 mb-4" *ngFor="let order of completedOrders">
+            <div class="col">
+                <a [routerLink]="['/display-order', order._id]">
+                    {{order.delivery.name}}<br>
+                </a>
+            </div>
+            <div class="col-12 col-lg-3">
+                <a [routerLink]="['/display-order', order._id]">
+                    {{order.delivery.telephone}}<br>
+                </a>
+            </div>
+            <div class="col-3 text-left col-lg-3">
+                <span class="">{{order.created_on | date:'shortTime' }}<br></span>
+            </div>
+            <div class="col-3 text-center col-lg-2"><span class="text-center">No<br></span></div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>

@@ -112,7 +112,7 @@ export class ProductCustomizerComponent implements OnInit {
     let newProduct = JSON.parse(JSON.stringify(this.product));
     newProduct.xtraToppings = JSON.parse(JSON.stringify(this.xtraToppings));        
     newProduct.customizer = '/product-customizer';
-    newProduct.orderCreatedAt = Date.now();
+    newProduct.itemCreatedAt = Date.now();
     console.log('Product to add ', newProduct);
     this.orderService.addToOrder(newProduct).subscribe();
     this.cancelOrder();

@@ -28,7 +28,7 @@ export class PizzaComponent implements OnInit {
 
   private addToOrder(pizza) {      
       let pizzToAdd = JSON.parse(JSON.stringify(pizza))
-      pizzToAdd.orderCreatedAt = Date.now();
+      pizzToAdd.itemCreatedAt = Date.now();
       pizzToAdd.xtraToppings = [];
       pizzToAdd.customizer = '/customize'
       console.log('Product to add ', pizza)

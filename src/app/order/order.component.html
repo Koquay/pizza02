@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <form>
+                <form #deliveryForm="ngForm">
                     <div class="form-row">
                         <div class="col-12 col-lg-7">
                             <div class="form-row d-none d-md-block">
@@ -125,9 +125,8 @@
                                     <div class="form-row">
                                         <div class="col-12">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" id="formCheck-1"
-                                                    name="deliveryMethod" [(ngModel)]="delivery.method"
-                                                    value="PickUp" (change)="showDelivery()">
+                                                <input class="form-check-input" type="radio" id="formCheck-1" name="deliveryMethod" [(ngModel)]="delivery.method" value="PickUp"
+                                                    (change)="showDelivery()">
                                                 <label class="form-check-label" for="formCheck-1">
                                                     Pick Up
                                                 </label>
@@ -135,8 +134,7 @@
                                         </div>
                                         <div class="col-12 mt-2">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" id="formCheck-2" name="delivery-method" 
-                                                    name="deliveryMethod" [(ngModel)]="delivery.method"
+                                                <input class="form-check-input" type="radio" id="formCheck-2" name="delivery-method" name="deliveryMethod" [(ngModel)]="delivery.method"
                                                     value="Delivery" (change)="showDelivery()">
                                                 <label class="form-check-label" for="formCheck-2">Delivery</label>
                                             </div>
@@ -147,7 +145,12 @@
                                             <div class="form-row mt-2">
                                                 <div class="col-12"><span>Name:</span></div>
                                                 <div class="col col-md-6 col-lg-12">
-                                                    <input class="form-control" type="text">
+                                                    <input class="form-control" type="text" required name="name" id="name" [(ngModel)]="delivery.name" #name="ngModel">
+                                                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="primary-color">
+                                                        <div *ngIf="name.errors.required">
+                                                            Name is required
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-row mt-2">
@@ -155,7 +158,12 @@
                                                     <span>Telephone:</span>
                                                 </div>
                                                 <div class="col col-md-6 col-lg-12">
-                                                    <input class="form-control" type="text">
+                                                    <input class="form-control" type="text" required name="telephone" id="telephone" [(ngModel)]="delivery.telephone" #telephone="ngModel">
+                                                    <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="primary-color">
+                                                        <div *ngIf="telephone.errors.required">
+                                                            Telephone is required
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <ng-container *ngIf="delivery.method=='Delivery'" id="delivery-address">
@@ -164,7 +172,12 @@
                                                         <span>Address:</span>
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
-                                                        <input class="form-control" type="text">
+                                                        <ng-container *ngIf="delivery.method=='Delivery'">
+                                                            <input class="form-control" type="text" required name="address" id="address" [(ngModel)]="delivery.address" #address="ngModel">
+                                                            <div *ngIf="address.invalid && (address.dirty || address.touched)" class="primary-color">
+                                                                Address is required
+                                                            </div>
+                                                        </ng-container>
                                                     </div>
                                                 </div>
                                                 <div class="form-row mt-2">
@@ -172,7 +185,12 @@
                                                         <span>City:</span>
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
-                                                        <input class="form-control" type="text">
+                                                        <ng-container *ngIf="delivery.method=='Delivery'">
+                                                            <input class="form-control" type="text" required name="city" id="city" [(ngModel)]="delivery.city" #city="ngModel">
+                                                            <div *ngIf="city.invalid && (city.dirty || city.touched)" class="primary-color">
+                                                                City is required
+                                                            </div>
+                                                        </ng-container>
                                                     </div>
                                                 </div>
                                                 <div class="form-row mt-2">
@@ -180,7 +198,8 @@
                                                         <span>Delivery Instructions; (If any):</span>
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
-                                                        <textarea class="form-control"></textarea>
+                                                        <textarea class="form-control" name="instruction" id="instruction" [(ngModel)]="delivery.instruction">
+                                                        </textarea>
                                                     </div>
                                                 </div>
                                             </ng-container>
@@ -188,8 +207,7 @@
                                     </div>
                                     <div class="form-row mt-4">
                                         <div class="col-12 text-center">
-                                            <button class="btn btn-primary view-order w-75" type="button"
-                                                [disabled]="!order.length" (click)="placeOrder()">
+                                            <button class="btn btn-primary view-order w-75" type="button" [disabled]="!order.length || !deliveryForm.form.valid" (click)="placeOrder()">
                                                 <strong>Place Order</strong>
                                             </button>
                                         </div>

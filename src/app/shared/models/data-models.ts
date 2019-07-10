@@ -1,11 +1,14 @@
+import { Delivery } from '../../order/delivery';
+
 export class Order {
     public orderItems = [];
+    public delivery:Delivery;
 }
 
 export class OrderItem {
     public name: String;
     public item: String;
-    public orderCreatedAt: Date;
+    public itemCreatedAt: Date;
     public price: Number;
     public quantity: Number;
     public img: String;

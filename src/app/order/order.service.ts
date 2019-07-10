@@ -33,13 +33,13 @@ export class OrderService {
   }
 
   private sortOrder() {
-    this.order = _.orderBy(this.order, ['orderCreatedAt'], ['asc']);
+    this.order = _.orderBy(this.order, ['itemCreatedAt'], ['asc']);
   }
 
   private removeEditedItem(editItem) {
     if (this.editItem) {
       if (this.editItem.uniqueId == editItem.uniqueId) {
-        editItem.orderCreatedAt = this.editItem.orderCreatedAt;
+        editItem.itemCreatedAt = this.editItem.itemCreatedAt;
         let index = this.order.findIndex(item => item.uniqueId == this.editItem.uniqueId);
         if (index >= 0) {
           this.order.splice(index, 1);
@@ -91,7 +91,6 @@ export class OrderService {
 
       orderItem.name = item.name;
       orderItem.item = item.item;
-      orderItem.orderCreatedAt = item.orderCreatedAt;
       orderItem.price = item.price;
       orderItem.quantity = item.quantity;
 
@@ -112,6 +111,8 @@ export class OrderService {
 
       newOrder.orderItems.push(orderItem);
     }
+
+    newOrder.delivery = order.delivery;
 
     console.log('Created Order', newOrder)
     return JSON.stringify(newOrder);

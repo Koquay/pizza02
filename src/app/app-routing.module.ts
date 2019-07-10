@@ -45,6 +45,14 @@ const routes: Routes = [
     loadChildren: './product-customizer/product-customizer.module#ProductCustomizerModule'
   },
   {
+    path: 'list-orders',
+    loadChildren: './list-order/list-order.module#ListOrderModule'
+  },
+  {
+    path: 'display-order',
+    loadChildren: './display-order/display-order.module#DisplayOrderModule'
+  },
+  {
     path: '',
     pathMatch: 'prefix',
     redirectTo: 'home'

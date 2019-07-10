@@ -54,11 +54,7 @@ const OrderItemSchema = new Schema({
     quantity: {
         type: Number,       
         default: 1
-    },
-    orderCreatedAt: {
-        type: Date,       
-        required: true
-    },
+    },    
     toppings:[ToppingSchema],
     createdOn: {
         type:Date,
@@ -66,8 +62,41 @@ const OrderItemSchema = new Schema({
     }
 });
 
+const DeliverySchema = new Schema({
+    method: {
+        type:String,
+        required: true
+    },
+    name: {
+        type:String,
+        required: true
+    },
+    telephone: {
+        type:String,
+        required: true
+    },
+    address: {
+        type:String,
+    },
+    city: {
+        type:String,
+    },
+    intruction: {
+        type:String,    
+    }
+}, {_id: false});
+
 const OrderSchema = new Schema({
-    orderItems: [OrderItemSchema]
+    orderItems: [OrderItemSchema],
+    delivery: DeliverySchema,
+    completed: {
+        type:Boolean,
+        default: false
+    }, 
+    created_on: {
+        type:Date,
+        default: Date.now
+    }   
 });
 
 mongoose.model('Order', OrderSchema, 'orders');

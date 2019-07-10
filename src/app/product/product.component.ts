@@ -69,7 +69,7 @@ export class ProductComponent implements OnInit {
       productToAdd.customizer = '/product/' + productToAdd.item;
     }  
 
-    productToAdd.orderCreatedAt = Date.now();
+    productToAdd.itemCreatedAt = Date.now();
     productToAdd.xtraToppings = [];
     this.orderService.addToOrder(productToAdd).subscribe()
   }

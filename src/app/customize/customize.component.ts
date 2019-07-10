@@ -154,7 +154,7 @@ export class CustomizeComponent implements OnInit {
     // let newXtraToppings = JSON.parse(JSON.stringify(this.xtraToppings));
     // newPizza.xtraToppings = newXtraToppings;         
     newPizza.customizer = '/customize'
-    newPizza.orderCreatedAt = Date.now();
+    newPizza.itemCreatedAt = Date.now();
     console.log('newPizza', newPizza);   
     this.orderService.addToOrder(newPizza).subscribe();
     this.cancelOrder();
