@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./app/home/home.component.scss";
 
-body {
-  font-family: 'Roboto' !important;
+body, html {  
+  height: 100%;
 }
 
 .view-order {
@@ -25,6 +25,7 @@ body {
   }
 
   body {
+    font-family: 'Roboto' !important;
     a {
       cursor: pointer;
     }
@@ -57,6 +58,8 @@ body {
     }
 }
 
-.main {
-  min-height: calc(100vh - 132px - 96px);
+.view-height {
+  // min-height: calc(100vh - 132px - 96px);
+  min-height: 80vh;
 }
+

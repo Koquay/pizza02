@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container main">
+<div class="container view-height">
     <section id="order">
         <div class="row mb-4">
             <div class="col">
@@ -159,7 +159,8 @@
                                                     <span>Telephone:</span>
                                                 </div>
                                                 <div class="col col-md-6 col-lg-12">
-                                                    <input class="form-control" type="text" required name="telephone" id="telephone" [(ngModel)]="delivery.telephone" #telephone="ngModel">
+                                                    <input class="form-control" type="text" required name="telephone" 
+                                                        id="telephone" [(ngModel)]="delivery.telephone" #telephone="ngModel" maxlength="14">
                                                     <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="primary-color">
                                                         <div *ngIf="telephone.errors.required">
                                                             Telephone is required

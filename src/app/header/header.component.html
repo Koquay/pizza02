@@ -45,7 +45,7 @@
                                 Dippings<br>
                             </a>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item" role="presentation" *ngIf="orderService.order.length > 0">
                             <a class="nav-link" [routerLink]="['/order']" routerLinkActive="active">
                                 View Order<br>
                             </a>

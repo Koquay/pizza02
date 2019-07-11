@@ -18,6 +18,9 @@ import { SharedModule } from './shared/modules/shared/shared.module';
     HttpClientModule,
     SharedModule,
   ],
+  exports: [
+
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
