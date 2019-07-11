@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListOrderService } from '../list-order/list-order.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-display-order',
@@ -12,7 +12,8 @@ export class DisplayOrderComponent implements OnInit {
 
   constructor(
     private listOrderService: ListOrderService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -32,6 +33,7 @@ export class DisplayOrderComponent implements OnInit {
   private setOrderStatus(order) {
     console.log('completed order', order);
     this.listOrderService.setOrderStatus(order._id, order.completed).subscribe();
+    this.router.navigate(['/list-orders'])
   }
 
   private getToppingDetails(topping) {
@@ -96,6 +98,14 @@ export class DisplayOrderComponent implements OnInit {
   }
 
   private getTotal() {
-    return (this.getSubtotal() + this.getGST() + this.getPST() - this.getDiscount());
+    return (this.getSubtotal() + this.getGST() + this.getPST() + this.getDeliveryCharge() - this.getDiscount());
+  }
+
+  private getDeliveryCharge() {
+    if (this.order.delivery.method == 'Delivery') {
+      return .10 * this.getSubtotal();
+    } else {
+      return 0;
+    }
   }
 }

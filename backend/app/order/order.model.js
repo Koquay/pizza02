@@ -28,7 +28,7 @@ const ToppingSchema = new Schema({
         type: String,       
         required: true
     },
-    createdOn: {
+    created_on: {
         type:Date,
         default: Date.now
     }
@@ -55,8 +55,11 @@ const OrderItemSchema = new Schema({
         type: Number,       
         default: 1
     },    
+    instruction: {
+        type: String,       
+    },
     toppings:[ToppingSchema],
-    createdOn: {
+    created_on: {
         type:Date,
         default: Date.now
     }

@@ -4,7 +4,7 @@ exports.completeOrder = async(req, res) => {
     console.log('order complete params', req.params);
     try {
         await OrderService.completeOrder(req.params.id, req.params.completed);
-        res.status(201)
+        res.status(201).json([])
     } catch(error) {
         throw error;
     }    

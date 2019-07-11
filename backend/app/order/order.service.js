@@ -8,13 +8,16 @@ exports.completeOrder = async(id, completed) => {
         return;
     } catch(error) {
         throw error;
-    }
-    return {};
+    }   
 }
 
 exports.get = async () => {
     try {
-        let orders = await Order.find({}).sort({"created_on": 1});
+        // await Order.updateMany({}, {created_on: new Date()});
+
+        let orders = await Order.find({ '$where': 'this.created_on.toJSON().slice(0, 10) == new Date().toJSON().slice(0, 10)' })
+            .sort({"created_on": 1})
+        // let orders = await Order.find({}).sort({"created_on": 1});
         console.log('orders', orders);
         return orders;
     } catch(error) {

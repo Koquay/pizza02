@@ -12,6 +12,7 @@ export class OrderItem {
     public price: Number;
     public quantity: Number;
     public img: String;
+    public instruction: String;
     public toppings: Topping[] = [];
     // public xtraToppings = [];
 

@@ -112,12 +112,20 @@
                     <div class="col"><span class="mr-3 font-weight-bold">PST:</span>
                         <span>{{getPST() | currency:'USD':'symbol-narrow'}}</span></div>
                 </div>
+                <div class="row" *ngIf="order.delivery.method == 'Delivery'">
+                    <div class="col"><span class="mr-3 font-weight-bold">Delivery</span>
+                        <span>{{getDeliveryCharge() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col"><span class="mr-3 font-weight-bold">Discount</span>
                         <span>{{getDiscount() | currency:'USD':'symbol-narrow'}}</span>
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-12">
+                        <hr />
+                    </div>
                     <div class="col">
                         <span class="mr-3 font-weight-bold">Total</span>
                         <span>{{getTotal() | currency:'USD':'symbol-narrow'}}</span>

@@ -45,7 +45,7 @@ const ToppingsSchema = new Schema({
     amount: {
         type: String,       
     },
-    createdOn: {
+    created_on: {
         type:Date,
         default: Date.now
     }

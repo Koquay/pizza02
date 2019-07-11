@@ -28,7 +28,7 @@ const MenuSchema = new Schema({
         required: true
     },
     toppings:[String],
-    createdOn: {
+    created_on: {
         type:Date,
         default: Date.now
     }

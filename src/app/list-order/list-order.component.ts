@@ -37,7 +37,7 @@ export class ListOrderComponent implements OnInit {
       this.orders = orders;
       this.pendingOrders = this.orders.filter(order => order.completed == false);
       this.completedOrders = this.orders.filter(order => order.completed == true);
-      console.log('pendingrders', this.pendingOrders)
+      console.log('pendingOrders', this.pendingOrders)
     })
   }
 }

@@ -53,7 +53,7 @@
                 <span class="font-weight-bold col-title">Delivered/Picked up</span>
             </div>
         </div>
-        <div class="row mb-lg-2 mb-4" *ngFor="let order of completedOrders">
+        <div class="row mb-lg-2 mb-4 completed-orders" *ngFor="let order of completedOrders">
             <div class="col">
                 <a [routerLink]="['/display-order', order._id]">
                     {{order.delivery.name}}<br>

@@ -12,16 +12,25 @@ $gray: #f7f7f7;
     .heading {
         font-weight: bold;
         font-size: 1.5rem;
-        border-bottom: 3px solid $secondary;
+        border-bottom: 3px solid $tertiary;
         // color: $primary;
     }
 
     .col-title {
         font-size: 1.1rem;
-        border-bottom: 2px solid $secondary;
+        border-bottom: 2px solid $tertiary;
     }
 
     #pending-orders {
         margin-bottom: 5rem;
+    }
+
+    .completed-orders {
+        // background: $tertiary;
+        color: $primary;
+
+        a {
+            color: $primary;
+        }
     }
 }

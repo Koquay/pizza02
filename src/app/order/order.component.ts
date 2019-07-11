@@ -53,24 +53,28 @@ export class OrderComponent implements OnInit {
     return subtotal;
   }
 
-  private getGstHst() {
+  private getGST() {
+    return this.getSubtotal() * .10;
+  }
+
+  private getPST() {
     return this.getSubtotal() * .10;
   }
 
   private getDeliveryCharge() {
     if (this.delivery.method == 'Delivery') {
-      return 5.00;
+      return this.getSubtotal() * .10;
     } else {
       return 0;
     }
   }
 
   private getDiscount() {
-    return this.getSubtotal() * .05;
+    return this.getSubtotal() * .10;
   }
 
   private getTotal() {
-    return this.getSubtotal() + this.getGstHst() + this.getDeliveryCharge() - this.getDiscount();
+    return this.getSubtotal() + this.getGST() + this.getPST() + this.getDeliveryCharge() - this.getDiscount();
   }
 
   public getItemPrice(item) {

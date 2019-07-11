@@ -93,6 +93,7 @@ export class OrderService {
       orderItem.item = item.item;
       orderItem.price = item.price;
       orderItem.quantity = item.quantity;
+      orderItem.instruction = item.instruction;
 
       for (let xtopping of item.xtraToppings) {
         let topping = new Topping();
