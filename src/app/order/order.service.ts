@@ -78,6 +78,7 @@ export class OrderService {
     return this.httpClient.post(this.orderUrl, { order: newOrder }).pipe(
       tap(order => {
         console.log('new order', order);
+        this.messageService.sendInfo('Order successfully sent.');
       }),
       catchError(error => {
         this.messageService.sendErrorMessage(error);

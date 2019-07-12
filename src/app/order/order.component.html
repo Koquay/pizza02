@@ -160,8 +160,8 @@
                                                     <span>Telephone:</span>
                                                 </div>
                                                 <div class="col col-md-6 col-lg-12">
-                                                    <input class="form-control" type="text" required name="telephone" 
-                                                        id="telephone" [(ngModel)]="delivery.telephone" #telephone="ngModel" maxlength="14">
+                                                    <input class="form-control" type="text" required name="telephone" id="telephone" [(ngModel)]="delivery.telephone" #telephone="ngModel"
+                                                        maxlength="14">
                                                     <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="primary-color">
                                                         <div *ngIf="telephone.errors.required">
                                                             Telephone is required
@@ -210,8 +210,8 @@
                                     </div>
                                     <div class="form-row mt-4">
                                         <div class="col-12 text-center">
-                                            <button class="btn btn-primary view-order w-75" type="button" 
-                                                [disabled]="orderPlaced || !order.length || !deliveryForm.form.valid" (click)="placeOrder()">
+                                            <button class="btn btn-primary view-order w-75" type="button" [disabled]="orderPlaced || !order.length || !deliveryForm.form.valid"
+                                                (click)="placeOrder()">
                                                 <strong>Place Order</strong>
                                             </button>
                                         </div>
@@ -226,3 +226,5 @@
     </section>
 </div>
 <app-footer></app-footer>
+
+

@@ -11,7 +11,7 @@
                             <a class="nav-link active" [routerLink]="['/customize']">Create Your Own<br></a>
                         </li> -->
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" [routerLink]="['/pizza']" routerLinkActive="active">
+                            <a class="nav-link" [routerLink]="['/pizza']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                                 Pizzas<br>
                             </a>
                         </li>
@@ -45,16 +45,16 @@
                                 Dippings<br>
                             </a>
                         </li>
-                        <li class="nav-item" role="presentation" *ngIf="orderService.order.length > 0">
+                        <li class="nav-item" role="presentation">
                             <a class="nav-link" [routerLink]="['/order']" routerLinkActive="active">
                                 View Order<br>
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                                <a class="nav-link" [routerLink]="['/list-orders']" routerLinkActive="active">
-                                    List Orders<br>
-                                </a>
-                            </li>
+                            <a class="nav-link" [routerLink]="['/list-orders']" routerLinkActive="active">
+                                List Orders<br>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

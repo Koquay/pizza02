@@ -14,7 +14,7 @@ import { SharedModule } from './shared/modules/shared/shared.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule,    
     HttpClientModule,
     SharedModule,
   ],

@@ -1,5 +1,7 @@
-<ng-container *ngIf="orderService.order.length > 0">
-    <button class="btn btn-primary view-order my-3" type="button" [routerLink]="['/order']">
+<!-- <ng-container *ngIf="orderService.order.length > 0"> -->
+<ng-container>
+    <button class="btn btn-primary view-order my-3" type="button" [routerLink]="['/order']"
+        [disabled]="orderService.order.length == 0">
         <strong>VIEW ORDER</strong>
     </button>
 </ng-container>

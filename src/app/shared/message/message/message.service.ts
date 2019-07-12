@@ -15,8 +15,9 @@ export class MessageService {
   ) { }
 
   public sendErrorMessage(error) {
-    let message = error.error.message || error.message;
-    let status = error.error.status || error.status;
+    console.log('error', error)
+    let message = error.error || error.error.message;
+    let status = error.status || error.error.status;
     // let errorMessage = `Error: ${status} - ${message}`;
     let errorMessage = `${message}`;
     console.log('message', errorMessage);
@@ -25,5 +26,10 @@ export class MessageService {
     this.alertService.sendAlert(alert);
     throwError(error);
     
+  }
+
+  public sendInfo(info) {
+    let alert = new Alert(info, AlertType.SUCCESS);
+    this.alertService.sendAlert(alert);
   }
 }
