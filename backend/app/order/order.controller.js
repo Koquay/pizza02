@@ -1,4 +1,5 @@
 const OrderService = require('./order.service');
+const errorHandler = require('../error/error-handler');
 
 exports.completeOrder = async(req, res) => {
     console.log('order complete params', req.params);
@@ -6,7 +7,7 @@ exports.completeOrder = async(req, res) => {
         await OrderService.completeOrder(req.params.id, req.params.completed);
         res.status(201).json([])
     } catch(error) {
-        throw error;
+        return errorHandler.handleError('COMPLETE ERROR', res, error);
     }    
 }
 
@@ -17,7 +18,7 @@ exports.get = async(req, res) => {
         let order = await OrderService.get();
         res.status(200).json(order);
     } catch(error) {
-        throw error;
+        return errorHandler.handleError('GET ORDER LIST', res, error);
     }   
     
 }
@@ -31,6 +32,6 @@ exports.post = async (req, res) => {
         res.status(201).json(newOrder);
         return;
     } catch(error) {
-        throw error;
+        return errorHandler.handleError('CREATE NEW ORDER', res, error);
     }    
 }

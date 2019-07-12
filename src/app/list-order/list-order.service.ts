@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MessageService } from '../shared/message/message/message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class ListOrderService {
   private orders;
 
   constructor(
-    private httpClient:HttpClient
+    private httpClient:HttpClient,
+    private messageService:MessageService
   ) { }
 
   public getOrders() {
@@ -19,6 +21,10 @@ export class ListOrderService {
       tap(orders => {
         console.log('list orders', orders)
         this.orders = orders;
+      }),
+      catchError(error => {        
+        this.messageService.sendErrorMessage(error);
+        throw error;
       })
     )
   }
@@ -34,6 +40,10 @@ export class ListOrderService {
     return this.httpClient.post(url, {}).pipe(
       tap(order => {
         console.log('updated order', order);
+      }),
+      catchError(error => {
+        this.messageService.sendErrorMessage(error);
+        throw error;
       })
     )
   }

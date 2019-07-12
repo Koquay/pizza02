@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MessageService } from '../shared/message/message/message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class ProductService {
   private menuUrl = '/api/menu?menuItem=';
 
   constructor(
-    private httpClient:HttpClient
+    private httpClient:HttpClient,
+    private messageService:MessageService
   ) { }
 
   public getProductByType(type) {
@@ -19,6 +21,10 @@ export class ProductService {
       tap(products =>{
         console.log('products', products)
         this.products = products;
+      }),
+      catchError(error => {        
+        this.messageService.sendErrorMessage(error);
+        throw error;
       })
     )
   }

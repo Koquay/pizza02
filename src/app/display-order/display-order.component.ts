@@ -32,8 +32,9 @@ export class DisplayOrderComponent implements OnInit {
 
   private setOrderStatus(order) {
     console.log('completed order', order);
-    this.listOrderService.setOrderStatus(order._id, order.completed).subscribe();
-    this.router.navigate(['/list-orders'])
+    this.listOrderService.setOrderStatus(order._id, order.completed).subscribe(() => {
+      this.router.navigate(['/list-orders'])
+    });    
   }
 
   private getToppingDetails(topping) {

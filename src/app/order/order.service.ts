@@ -4,8 +4,9 @@ import { of, Subject } from 'rxjs';
 import { CustomizeService } from '../customize/customize.service';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { Order, OrderItem, Topping } from '../shared/models/data-models';
+import { MessageService } from '../shared/message/message/message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class OrderService {
   constructor(
     private customizeService: CustomizeService,
     private router: Router,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private messageService:MessageService
   ) { }
 
   public addToOrder(item) {
@@ -76,6 +78,10 @@ export class OrderService {
     return this.httpClient.post(this.orderUrl, { order: newOrder }).pipe(
       tap(order => {
         console.log('new order', order);
+      }),
+      catchError(error => {
+        this.messageService.sendErrorMessage(error);
+        throw error;
       })
     )
   }

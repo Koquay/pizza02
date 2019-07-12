@@ -1,4 +1,5 @@
 <app-header></app-header>
+<app-message></app-message>
 <div class="container view-height">
     <section id="order">
         <div class="row mb-4">
@@ -209,7 +210,8 @@
                                     </div>
                                     <div class="form-row mt-4">
                                         <div class="col-12 text-center">
-                                            <button class="btn btn-primary view-order w-75" type="button" [disabled]="!order.length || !deliveryForm.form.valid" (click)="placeOrder()">
+                                            <button class="btn btn-primary view-order w-75" type="button" 
+                                                [disabled]="orderPlaced || !order.length || !deliveryForm.form.valid" (click)="placeOrder()">
                                                 <strong>Place Order</strong>
                                             </button>
                                         </div>

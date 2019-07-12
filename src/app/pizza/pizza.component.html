@@ -1,8 +1,10 @@
-<ng-container *ngIf="pizzas">
+<app-header></app-header>
+<app-message></app-message>
 
-    <app-header></app-header>
 
-    <div class="container" id="main-container">
+<div class="container view-height" id="main-container">
+    <ng-container *ngIf="pizzas">
+
         <section id="pizza-section">
             <div class="row">
                 <div class="col text-center">
@@ -55,8 +57,9 @@
                 </ng-container>
             </div>
         </section>
-    </div>
+    </ng-container>
+</div>
 
-    <app-footer></app-footer>
 
-</ng-container>
+
+<app-footer></app-footer>

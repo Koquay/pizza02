@@ -1,6 +1,8 @@
-<ng-container *ngIf="products">
-    <app-header></app-header>
-    <div class="container" id="main-container view-height">
+<app-header></app-header>
+<app-message></app-message>
+
+<div class="container view-height" id="main-container">
+    <ng-container *ngIf="products">
         <section id="chicken-section">
             <div class="row mt-4">
                 <div class="col text-center">
@@ -60,6 +62,7 @@
                 </div>
             </div>
         </section>
-    </div>
-    <app-footer></app-footer>
-</ng-container>
+    </ng-container>
+</div>
+
+<app-footer></app-footer>

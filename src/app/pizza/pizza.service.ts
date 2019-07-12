@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { of, forkJoin } from 'rxjs';
+import { MessageService } from '../shared/message/message/message.service';
 
 
 
@@ -16,7 +17,8 @@ export class PizzaService {
   constructor(
     private activatedRoute:ActivatedRoute,
     private router:Router,
-    private httpClient:HttpClient
+    private httpClient:HttpClient,
+    private messageService:MessageService
   ) { }
 
   getPizzaMenu() {    
@@ -24,6 +26,10 @@ export class PizzaService {
       tap(pizzas => {
         console.log('pizzas', pizzas)
         this.pizzas = pizzas; 
+      }),
+      catchError(error => {        
+        this.messageService.sendErrorMessage(error);
+        throw error;
       })
     )
   }

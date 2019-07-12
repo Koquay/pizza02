@@ -10,6 +10,7 @@ import { Delivery } from './delivery';
 export class OrderComponent implements OnInit {
   private order;
   private delivery: Delivery;  
+  private orderPlaced = false;
 
   constructor(
     private orderService: OrderService
@@ -19,6 +20,7 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.getOrders();
+    this.orderPlaced = false;
   }
 
   private getOrders() {
@@ -132,6 +134,8 @@ export class OrderComponent implements OnInit {
 
   private placeOrder() {
     this.order.delivery = this.delivery;
-    this.orderService.placeOrder(this.order).subscribe();
+    this.orderService.placeOrder(this.order).subscribe(() => {
+      this.orderPlaced = true;
+    });
   }
 }

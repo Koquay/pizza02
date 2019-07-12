@@ -5,17 +5,20 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { HeaderComponent } from '../../../header/header.component';
 import { FooterComponent } from '../../../footer/footer.component';
 import { ViewCartComponent } from '../../view-cart/view-cart.component';
+import { MessageComponent } from '../../message/message/message.component';
 
 @NgModule({
   declarations: [
     HeaderComponent, 
     FooterComponent,
-    ViewCartComponent
+    ViewCartComponent,
+    MessageComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    ViewCartComponent
+    ViewCartComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,
