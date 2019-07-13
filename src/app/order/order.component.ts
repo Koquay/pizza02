@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from './order.service';
 import { Delivery } from './delivery';
+import { MatDialog } from '@angular/material';
+import { ConfirmationDialogComponent } from '../shared/dialog/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-order',
@@ -9,11 +11,12 @@ import { Delivery } from './delivery';
 })
 export class OrderComponent implements OnInit {
   private order;
-  private delivery: Delivery;  
+  private delivery: Delivery;
   private orderPlaced = false;
 
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    public dialog: MatDialog
   ) {
     this.delivery = new Delivery();
   }
@@ -98,6 +101,7 @@ export class OrderComponent implements OnInit {
   }
 
   private remove(uniqueId) {
+    // this.openDialog();
     let itemIndex = this.order.findIndex(item => item.uniqueId == uniqueId);
 
     if (itemIndex >= 0) {
@@ -136,6 +140,19 @@ export class OrderComponent implements OnInit {
     this.order.delivery = this.delivery;
     this.orderService.placeOrder(this.order).subscribe(() => {
       this.orderPlaced = true;
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: "Delete this item?"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Yes clicked');
+        // DO SOMETHING
+      }
     });
   }
 }

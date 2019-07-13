@@ -96,9 +96,11 @@ const OrderSchema = new Schema({
         type:Boolean,
         default: false
     }, 
-    created_on: {
+    create_date: {
         type:Date,
-        default: Date.now
+    },
+    create_time: {
+        type:Date,
     }   
 });
 
