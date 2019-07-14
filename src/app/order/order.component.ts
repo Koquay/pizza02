@@ -3,6 +3,8 @@ import { OrderService } from './order.service';
 import { Delivery } from './delivery';
 import { MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from '../shared/dialog/confirmation-dialog/confirmation-dialog.component';
+import { Observable } from 'rxjs';
+import { DialogService } from '../shared/dialog/dialog.service';
 
 @Component({
   selector: 'app-order',
@@ -16,7 +18,8 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private dialogService:DialogService
   ) {
     this.delivery = new Delivery();
   }
@@ -146,7 +149,7 @@ export class OrderComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
-      data: "Delete this item?"
+      data: "Delete this item from your order?"
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -155,4 +158,13 @@ export class OrderComponent implements OnInit {
       }
     });
   }
+
+  canDeactivate(): Observable<boolean> | boolean {
+
+    if (true) {
+
+        return this.dialogService.confirm('Discard changes for Person?');
+    }
+    return true;
+}
 }

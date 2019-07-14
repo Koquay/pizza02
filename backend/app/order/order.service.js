@@ -19,8 +19,10 @@ exports.completeOrder = async (id, completed) => {
 exports.get = async () => {
     try {
 
-        let date = moment.tz('America/New_York').format('YYYY-MM-DD');
+        let date = moment.tz('America/Toronto').format('YYYY-MM-DD');
         console.log('date', date)
+
+        // await Order.updateMany({}, {$set: {create_date:date}})
 
         let orders = await Order.find({create_date: date}).sort({ "create_time": 1 });
         console.log('orders', orders)
@@ -45,8 +47,8 @@ exports.post = async (orders) => {
 
     try {
         // throw new Error();
-        let date = moment.tz('America/New_York').format('YYYY-MM-DD');
-        let time = moment.tz('America/New_York').format('YYYY-MM-DD hh:mm A');
+        let date = moment.tz('America/Toronto').format('YYYY-MM-DD');
+        let time = moment.tz('America/Toronto').format('YYYY-MM-DD hh:mm A');
 
         let newOrder = await Order.create(
             { 
