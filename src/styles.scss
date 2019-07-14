@@ -32,7 +32,15 @@ body, html {
   }
 
   .primary-color {
-    color: $primary;
+    color: $primary !important;
+  }
+
+  .secondary-color {
+    color: $secondary !important;
+  }
+
+  .secondary-background {
+    background: $secondary !important;
   }
 
   .increase-quantity {

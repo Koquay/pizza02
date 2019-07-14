@@ -52,15 +52,10 @@
                                             <i class="fa fa-trash-o ml-2 add"></i>
                                         </a> -->
 
-                                        <a (click)="openDialog()">
+                                        <a (click)="setDeleteItem(item)" data-toggle="modal" data-target="#deleteItemModal">
                                             <i class="fa fa-trash-o ml-2 add"></i>
                                         </a>
                                     </p>
-                                    <div>
-                                        <button (click)="openDialog()">
-                                            <i class="fa fa-trash-o ml-2 add"></i>
-                                        </button>
-                                    </div>
                                 </div>
                                 <div class="col-2 d-flex justify-content-end align-items-center price">
                                     <span>{{getItemPrice(item) | currency:'USD':'symbol-narrow'}}</span>
@@ -219,8 +214,7 @@
                                     </div>
                                     <div class="form-row mt-4">
                                         <div class="col-12 text-center">
-                                            <button class="btn btn-primary view-order w-75" type="button" 
-                                                [disabled]="orderPlaced || !order.length || !deliveryForm.form.valid"
+                                            <button class="btn btn-primary view-order w-75" type="button" [disabled]="orderPlaced || !order.length || !deliveryForm.form.valid"
                                                 (click)="placeOrder()">
                                                 <strong>Place Order</strong>
                                             </button>
@@ -236,3 +230,37 @@
     </section>
 </div>
 <app-footer></app-footer>
+
+<section id="confirmModal" *ngIf="deleteItem">   
+    <div class="modal fade" id="deleteItemModal" tabindex="-1" role="dialog" aria-labelledby="deleteItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title primary-color" id="deleteItemModalLabel">
+                        Delete this item from your order?
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-2">
+                            <img class="img-fluid" src="assets/img/{{deleteItem.img}}" />
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center">
+                            <span class="d-flex">{{deleteItem.name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary secondary-background" data-dismiss="modal"
+                        (click)="removeItem(deleteItem.uniqueId)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

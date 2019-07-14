@@ -15,11 +15,12 @@ export class OrderComponent implements OnInit {
   private order;
   private delivery: Delivery;
   private orderPlaced = false;
+  private deleteItem;
 
   constructor(
     private orderService: OrderService,
     public dialog: MatDialog,
-    private dialogService:DialogService
+    private dialogService: DialogService
   ) {
     this.delivery = new Delivery();
   }
@@ -103,8 +104,7 @@ export class OrderComponent implements OnInit {
     return price;
   }
 
-  private remove(uniqueId) {
-    // this.openDialog();
+  private removeItem(uniqueId) {
     let itemIndex = this.order.findIndex(item => item.uniqueId == uniqueId);
 
     if (itemIndex >= 0) {
@@ -163,8 +163,12 @@ export class OrderComponent implements OnInit {
 
     if (true) {
 
-        return this.dialogService.confirm('Discard changes for Person?');
+      return this.dialogService.confirm('Discard changes for Person?');
     }
     return true;
-}
+  }
+
+  private setDeleteItem(item) {
+    this.deleteItem = item;
+  }
 }
