@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from './order.service';
 import { Delivery } from './delivery';
-import { Observable } from 'rxjs';
-import { DialogService } from '../shared/dialog/dialog.service';
 
 @Component({
   selector: 'app-order',
@@ -17,10 +15,8 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    // public dialog: MatDialog,
-    private dialogService: DialogService
   ) {
-    this.delivery = new Delivery();
+    // this.delivery = new Delivery();
   }
 
   ngOnInit() {
@@ -31,7 +27,8 @@ export class OrderComponent implements OnInit {
   private getOrders() {
     this.orderService.getOrder().subscribe(order => {
       this.order = order;
-      console.log('order', this.order)
+
+      this.order.delivery = this.order.delivery || new Delivery();     
     })
   }
 
@@ -69,7 +66,7 @@ export class OrderComponent implements OnInit {
   }
 
   private getDeliveryCharge() {
-    if (this.delivery.method == 'Delivery') {
+    if (this.order.delivery.method == 'Delivery') {
       return this.getSubtotal() * .10;
     } else {
       return 0;
@@ -112,6 +109,7 @@ export class OrderComponent implements OnInit {
   }
 
   private edit(item) {
+    console.log('edit order item', this.order)
     this.orderService.edit(item).subscribe();
   }
 
@@ -134,24 +132,25 @@ export class OrderComponent implements OnInit {
   }
 
   private showDelivery() {
-    console.log('delivery', this.delivery)
+    console.log('delivery', this.order.delivery)
   }
 
   private placeOrder() {
-    this.order.delivery = this.delivery;
+    console.log('placing order', this.order)
+    // this.order.delivery = this.order.delivery;
     this.orderService.placeOrder(this.order).subscribe(() => {
       this.orderPlaced = true;
     });
   }
 
-  canDeactivate(): Observable<boolean> | boolean {
+  // canDeactivate(): Observable<boolean> | boolean {
 
-    if (true) {
+  //   if (true) {
 
-      return this.dialogService.confirm('Discard changes for Person?');
-    }
-    return true;
-  }
+  //     return this.dialogService.confirm('Discard changes?');
+  //   }
+  //   return true;
+  // }
 
   private setDeleteItem(item) {
     this.deleteItem = item;

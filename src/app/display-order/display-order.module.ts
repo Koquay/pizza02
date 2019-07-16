@@ -6,7 +6,6 @@ import { DisplayOrderComponent } from './display-order.component';
 import { SharedModule } from '../shared/modules/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import {NgxMaskModule, IConfig} from 'ngx-mask'
-import { MatCheckbox } from '@angular/material';
 export let options: Partial<IConfig> | (() => Partial<IConfig>);  
 
 @NgModule({
@@ -16,8 +15,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     FormsModule,
     DisplayOrderRoutingModule,
     SharedModule,
-    NgxMaskModule.forRoot({}),
-    MatCheckbox
+    NgxMaskModule.forRoot({})
   ]
 })
 export class DisplayOrderModule { }

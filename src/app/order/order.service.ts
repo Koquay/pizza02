@@ -22,19 +22,21 @@ export class OrderService {
     private router: Router,
     private httpClient: HttpClient,
     private messageService:MessageService
-  ) { }
+  ) { 
+    
+  }
 
   public addToOrder(item) {
     console.log('add item', item)
     this.removeEditedItem(item);
     this.addUniqueId(item);
     this.order.push(item);
-    this.sortOrder();
-    console.log('order', this.order)
+    // this.sortOrder();
+    console.log('order @service.addToOrder 6', this.order)
     return of();
   }
 
-  private sortOrder() {
+  private sortOrder() {    
     this.order = _.orderBy(this.order, ['itemCreatedAt'], ['asc']);
   }
 
@@ -45,7 +47,7 @@ export class OrderService {
         let index = this.order.findIndex(item => item.uniqueId == this.editItem.uniqueId);
         if (index >= 0) {
           this.order.splice(index, 1);
-          console.log('delete unique id', this.order)
+          console.log('order@delete unique id', this.order)
         }
       }
     }
