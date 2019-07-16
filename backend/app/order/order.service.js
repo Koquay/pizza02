@@ -22,16 +22,10 @@ exports.get = async () => {
         let date = moment.tz('America/Toronto').format('YYYY-MM-DD');
         console.log('date', date)
 
-        // await Order.updateMany({}, {$set: {create_date:date}})
+        // await Order.updateMany({}, {$set: {telephone:"2227772222"}})
 
         let orders = await Order.find({create_date: date}).sort({ "create_time": 1 });
         console.log('orders', orders)
-        
-        // let orders = await Order.find({
-        //     $where: function () {
-        //         return this.create_time.toJSON().slice(0, 10) == new Date().toJSON().slice(0, 10)
-        //     }
-        // }).sort({ "created_time": 1 });
 
         return orders;
     } catch (error) {

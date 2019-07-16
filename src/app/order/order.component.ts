@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from './order.service';
 import { Delivery } from './delivery';
-import { MatDialog } from '@angular/material';
-import { ConfirmationDialogComponent } from '../shared/dialog/confirmation-dialog/confirmation-dialog.component';
 import { Observable } from 'rxjs';
 import { DialogService } from '../shared/dialog/dialog.service';
 
@@ -19,7 +17,7 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    public dialog: MatDialog,
+    // public dialog: MatDialog,
     private dialogService: DialogService
   ) {
     this.delivery = new Delivery();
@@ -143,19 +141,6 @@ export class OrderComponent implements OnInit {
     this.order.delivery = this.delivery;
     this.orderService.placeOrder(this.order).subscribe(() => {
       this.orderPlaced = true;
-    });
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '350px',
-      data: "Delete this item from your order?"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('Yes clicked');
-        // DO SOMETHING
-      }
     });
   }
 

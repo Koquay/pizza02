@@ -16,6 +16,7 @@
             <div class="row my-4">
                 <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let product of products">
                     <div class="card text-center py-4">
+                    <!-- <mat-card class="text-center py-4">   -->
                         <h5>{{product.name}}</h5>
                         <img class="card-img w-100 d-block" src="assets/img/{{product.img}}">
                         <div class="card-body">
@@ -59,7 +60,10 @@
                             </div>
                         </div>
                     </div>
+                <!-- </mat-card> -->
                 </div>
+
+
             </div>
         </section>
     </ng-container>

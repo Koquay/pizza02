@@ -85,7 +85,8 @@
                                 <button class="btn btn-primary btn-sm font-weight-bold" type="button" *ngIf="!editId" (click)="addToOrder()">
                                     <span *ngIf="!editId">ADD</span>
                                 </button>
-                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" *ngIf="editId" (click)="saveOrder()">
+                                <button class="btn btn-primary btn-sm font-weight-bold" type="button" 
+                                    *ngIf="editId" (click)="saveOrder()"  [disabled]="!isDirty">
                                     <span *ngIf="editId">SAVE</span>
                                 </button>
                                 <a id="cancel" class="d-block ml-lg-3" (click)="cancelOrder()" style="/*color: #f9501c;*/">

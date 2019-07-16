@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col">
                         <span class="mr-3 font-weight-bold">Telephone:</span>
-                        <span>{{order.delivery.telephone}}</span>
+                        <span>{{order.delivery.telephone | mask: '(000) 000-0000'}}</span>
                     </div>
                 </div>
                 <div class="row" *ngIf="order.delivery.method=='Delivery'">
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col">
                         <span class="mr-3 font-weight-bold"><strong>Order Time</strong>:</span>
-                        <span>{{order.created_on | date:'shortTime' }}<br></span>
+                        <span>{{order.create_time | date:'shortTime' }}<br></span>
                     </div>
                 </div>
                 <div class="row">

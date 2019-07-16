@@ -1,13 +1,11 @@
 <app-header></app-header>
+<app-message></app-message>
 
 <div class="container" id="main-container">
     <section id="specials-section">
         <div class="col-12 text-center">
             <app-view-cart></app-view-cart>
         </div>
-        <!-- <div class="row">
-            <div class="col-12 text-center"><button class="btn btn-primary view-order" type="button"><strong>VIEW ORDER</strong></button></div>
-        </div> -->
         <div class="row my-4">
             <div class="col">
                 <div class="carousel slide" data-ride="carousel" id="carousel-1">
@@ -58,35 +56,64 @@
                             class="menu-title">CREATE YOUR OWN</h4></a></div>
             </div> -->
             <div class="col-12 col-md-4 mb-4">
-                <div class="card text-center d-flex border-0"><a href="pizza.html"><img class="img-fluid" src="assets/img/menu-meat-piza.jpg"><h4
-                            class="menu-title">PIZZAS</h4></a></div>
+                <div class="card text-center d-flex border-0">
+                    <a [routerLink]="['/pizza']">
+                        <img class="img-fluid" src="assets/img/menu-meat-piza.jpg">
+                        <h4 class="menu-title">PIZZAS</h4>
+                    </a>
+                </div>
             </div>
             <div class="col-12 col-md-4 mb-4">
-                <div class="card text-center d-flex border-0"><a href="chicken.html"><img class="img-fluid" src="assets/img/menu-chicken.jpg"><h4
-                            class="menu-title">CHICKEN</h4></a></div>
+                <div class="card text-center d-flex border-0">
+                    <a [routerLink]="['/product', 'chicken']">
+                        <img class="img-fluid" src="assets/img/menu-chicken.jpg">
+                        <h4 class="menu-title">CHICKEN</h4>
+                    </a>
+                </div>
             </div>
             <div class="col-12 col-md-4 mb-4">
-                <div class="card text-center d-flex border-0"><a href="salads.html"><img class="img-fluid" src="assets/img/menu-salad.jpg"><h4
-                            class="menu-title">SALADS</h4></a></div>
+                <div class="card text-center d-flex border-0">
+                    <a [routerLink]="['/product', 'salads']">
+                        <img class="img-fluid" src="assets/img/menu-salad.jpg">
+                        <h4 class="menu-title">SALADS</h4>
+                    </a>
+                </div>
             </div>
             <div class="col-12 col-md-4 mb-4">
-                <div class="card text-center d-flex border-0"><a href="sides.html"><img class="img-fluid" src="assets/img/perfect%20sides.jpg"><h4
-                            class="menu-title">SIDES</h4></a></div>
+                <div class="card text-center d-flex border-0">
+                    <a [routerLink]="['/product', 'sides']">
+                        <img class="img-fluid" src="assets/img/perfect%20sides.jpg">
+                        <h4 class="menu-title">SIDES</h4>
+                    </a>
+                </div>
             </div>
             <div class="col-12 col-md-4 mb-4">
-                <div class="card text-center d-flex border-0"><a href="breads.html"><img class="img-fluid" src="assets/img/menu-bread.jpg"><h4
-                            class="menu-title">BREADS</h4></a></div>
+                <div class="card text-center d-flex border-0">
+                    <a [routerLink]="['/product', 'breads']">
+                        <img class="img-fluid" src="assets/img/menu-bread.jpg">
+                        <h4 class="menu-title">BREADS</h4>
+                    </a>
+                </div>
             </div>
             <div class="col-12 col-md-4 mb-4">
-                <div class="card text-center d-flex border-0"><a href="drinks.html"><img class="img-fluid" src="assets/img/menu-drinks.png"
-                            style="filter: brightness(47%);"><h4 class="menu-title">DRINKS</h4></a></div>
+                <div class="card text-center d-flex border-0">
+                    <a [routerLink]="['/product', 'drinks']">
+                        <img class="img-fluid" src="assets/img/menu-drinks.png"style="filter: brightness(47%);">
+                        <h4 class="menu-title">DRINKS</h4>
+                    </a>
+                </div>
             </div>
             <div class="col-12 col-md-4 mb-4">
-                <div class="card text-center d-flex border-0"><a href="dippings.html"><img class="img-fluid" src="assets/img/menu-dippings.jpg"><h4
-                            class="menu-title">DIPPINGS</h4></a></div>
+                <div class="card text-center d-flex border-0">
+                    <a [routerLink]="['/product', 'dippings']">
+                        <img class="img-fluid" src="assets/img/menu-dippings.jpg">
+                        <h4 class="menu-title">DIPPINGS</h4>
+                    </a>
+                </div>
             </div>
             <div class="col-12 col-md-4 mb-4">
-                <div class="card text-center d-flex border-0"><img class="img-fluid card-img-top w-100 d-block" src="assets/img/menu-cakes.jpg">
+                <div class="card text-center d-flex border-0">
+                    <img class="img-fluid card-img-top w-100 d-block" src="assets/img/menu-cakes.jpg">
                     <h4 class="menu-title">SWEETS</h4>
                 </div>
             </div>

@@ -6,17 +6,13 @@ import { HeaderComponent } from '../../../header/header.component';
 import { FooterComponent } from '../../../footer/footer.component';
 import { ViewCartComponent } from '../../view-cart/view-cart.component';
 import { MessageComponent } from '../../message/message/message.component';
-import { ConfirmationDialogComponent } from '../../dialog/confirmation-dialog/confirmation-dialog.component';
-import { MatButtonModule, MatDialogModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     HeaderComponent, 
     FooterComponent,
     ViewCartComponent,
-    MessageComponent,
-    ConfirmationDialogComponent
+    MessageComponent
   ],
   exports: [
     HeaderComponent,
@@ -26,13 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule,
-    // BrowserAnimationsModule,
-    MatDialogModule,
-    MatButtonModule
+    SharedRoutingModule
   ],
-  entryComponents: [
-    ConfirmationDialogComponent
-  ]
+
 })
 export class SharedModule { }

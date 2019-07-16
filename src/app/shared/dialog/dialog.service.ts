@@ -8,9 +8,9 @@ export class DialogService {
 
   constructor() { }
 
-  confirm(message?: string): Observable<boolean> {
+  confirm(message?: string)  {
     const confirmation = window.confirm(message || 'Are you sure?');
-
-    return of(confirmation);
+    console.log('confirmation', confirmation)
+    return confirmation;
   };
 }

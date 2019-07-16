@@ -103,8 +103,9 @@
                                         <div class="col d-flex justify-content-end align-items-center mr-4">
                                             <span class="d-flex">Discount</span>
                                         </div>
-                                        <div class="col-2 d-flex justify-content-end align-items-center font-weight-bold">
-                                            <span class="font-weight-bold">
+                                        <div class="col-2 d-flex justify-content-end align-items-center 
+                                            font-weight-bold" *ngIf="getDiscount()">
+                                            <span class="font-weight-bold secondary-color">
                                                 {{getDiscount() | currency:'USD':'symbol-narrow'}}
                                             </span>
                                         </div>
@@ -164,8 +165,9 @@
                                                     <span>Telephone:</span>
                                                 </div>
                                                 <div class="col col-md-6 col-lg-12">
-                                                    <input class="form-control" type="text" required name="telephone" id="telephone" [(ngModel)]="delivery.telephone" #telephone="ngModel"
-                                                        maxlength="14">
+                                                    <input class="form-control" type="text" required name="telephone" id="telephone" 
+                                                        [(ngModel)]="delivery.telephone" #telephone="ngModel" mask="(999) 999-9999"
+                                                            maxlength="15" type="tel">
                                                     <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="primary-color">
                                                         <div *ngIf="telephone.errors.required">
                                                             Telephone is required
@@ -231,7 +233,7 @@
 </div>
 <app-footer></app-footer>
 
-<section id="confirmModal" *ngIf="deleteItem">   
+<section id="confirmModal" *ngIf="deleteItem">
     <div class="modal fade" id="deleteItemModal" tabindex="-1" role="dialog" aria-labelledby="deleteItemModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -255,8 +257,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary secondary-background" data-dismiss="modal"
-                        (click)="removeItem(deleteItem.uniqueId)">
+                    <button type="button" class="btn btn-primary secondary-background" data-dismiss="modal" (click)="removeItem(deleteItem.uniqueId)">
                         Delete
                     </button>
                 </div>
