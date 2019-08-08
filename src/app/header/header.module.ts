@@ -4,13 +4,15 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderRoutingModule } from './header-routing.module';
 import { HeaderComponent } from './header.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HeaderComponent],
   imports: [
     CommonModule,
     RouterModule,
-    HeaderRoutingModule
+    HeaderRoutingModule,
+    FormsModule
   ]
 })
 export class HeaderModule { }

@@ -59,7 +59,8 @@ body {
 }
 
 .topping-select {   
-    input[type=radio] 
+    input[type=checkbox],
+    input[type=radio]  
     {
         width: 2rem;
         height: 1rem;

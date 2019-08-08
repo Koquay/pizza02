@@ -1,0 +1,69 @@
+$primary: #a30000; 
+$secondary: #dd2c00;
+$tertiary: #ff6434;
+$gray: #f7f7f7;
+
+.jumbotron {
+    background: $primary;
+    color: $tertiary;
+    padding: 0rem 1rem 1rem;    
+    
+    h1 {
+        font-family: 'Roboto';
+        font-weight: 700;
+        color: $tertiary !important;
+        font-size: 2rem;
+    }   
+    
+    p {        
+        color: $secondary; 
+        font-size: 1.2rem;
+    }
+    
+    #business-name {
+        font-style: italic;
+        font-size: 2rem;
+        color: white;                 
+    }
+    
+    @media(min-width: 768px) {
+        #business-name {
+            font-size: 3rem;
+        }    
+        
+        p {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.fa-phone {
+    font-size: 1.4rem !important;
+}
+
+.nav-item {
+    a {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+}
+
+#myAccountModal {
+    h2 {
+        color: $primary !important;
+    }
+
+    .btn {
+        background: $primary !important;
+        font-size: 1.2rem;
+    }
+
+    .close {
+        color: $primary !important;
+        font-size: 1.2rem !important;
+    }
+}
+
+.telephone {
+    font-weight: bold;
+}

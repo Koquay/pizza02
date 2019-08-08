@@ -27,3 +27,11 @@ export class Topping {
     public price: Number;
     public title: String;
 }
+
+export class User {
+    constructor(
+        private email = 'admin@yahoo.com',
+        private password = 'admin',
+        private token = '',
+    ) {}
+}

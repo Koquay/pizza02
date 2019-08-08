@@ -9,16 +9,18 @@ $gray: #f7f7f7;
         letter-spacing: 1rem;
         text-transform: uppercase;
         font-weight: bold;
-        border-bottom: 4px solid $tertiary;
+        // border-bottom: 4px solid $tertiary;
         
     }
     
     .card {       
+        border: $tertiary solid;
+        
         h5 {
             color: $primary;
             padding-top: 1rem;
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: bold;            
             
             @media(min-width: 992px) {
                 font-size: 1.4rem;

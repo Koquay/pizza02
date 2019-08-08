@@ -6,6 +6,7 @@ import { HeaderComponent } from '../../../header/header.component';
 import { FooterComponent } from '../../../footer/footer.component';
 import { ViewCartComponent } from '../../view-cart/view-cart.component';
 import { MessageComponent } from '../../message/message/message.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MessageComponent } from '../../message/message/message.component';
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    FormsModule
   ],
 
 })

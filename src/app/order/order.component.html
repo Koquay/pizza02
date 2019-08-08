@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <form #deliveryForm="ngForm"  *ngIf="order.delivery">
+                <form #deliveryForm="ngForm" *ngIf="order.delivery">
                     <div class="form-row">
                         <div class="col-12 col-lg-7">
                             <div class="form-row d-none d-md-block">
@@ -47,10 +47,6 @@
                                             <i class="fa fa-edit mr-2 add"></i>
                                         </a>
                                         <span class="mx-1"></span>
-
-                                        <!-- <a (click)="remove(item.uniqueId)">                                            
-                                            <i class="fa fa-trash-o ml-2 add"></i>
-                                        </a> -->
 
                                         <a (click)="setDeleteItem(item)" data-toggle="modal" data-target="#deleteItemModal">
                                             <i class="fa fa-trash-o ml-2 add"></i>
@@ -91,15 +87,15 @@
                                             <span>{{getPST() | currency:'USD':'symbol-narrow'}}</span>
                                         </div>
                                     </div>
-                                    
-                                        <div class="form-row" *ngIf="order.delivery.method=='Delivery'">
-                                            <div class="col d-flex justify-content-end align-items-center mr-4">
-                                                <span class="d-flex">Delivery</span>
-                                            </div>
-                                            <div class="col-2 d-flex justify-content-end align-items-center font-weight-bold">
-                                                <span>{{getDeliveryCharge() | currency:'USD':'symbol-narrow'}}</span>
-                                            </div>
-                                        </div>                                    
+
+                                    <div class="form-row" *ngIf="order.delivery.method=='Delivery'">
+                                        <div class="col d-flex justify-content-end align-items-center mr-4">
+                                            <span class="d-flex">Delivery</span>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end align-items-center font-weight-bold">
+                                            <span>{{getDeliveryCharge() | currency:'USD':'symbol-narrow'}}</span>
+                                        </div>
+                                    </div>
                                     <div class="form-row">
                                         <div class="col d-flex justify-content-end align-items-center mr-4">
                                             <span class="d-flex">Discount</span>
@@ -162,19 +158,18 @@
                                                 </div>
                                             </div>
                                             <div class="form-row mt-2">
-                                                <div class="col-12">
-                                                    <span>Telephone:</span>
-                                                </div>
                                                 <div class="col col-md-6 col-lg-12">
-                                                    <input class="form-control" type="text" required name="telephone" id="telephone" [(ngModel)]="order.delivery.telephone" #telephone="ngModel"
-                                                        mask="(999) 999-9999" maxlength="15" type="tel">
-                                                    <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="primary-color">
-                                                        <div *ngIf="telephone.errors.required">
-                                                            Telephone is required
+                                                    <label>Phone</label>
+                                                    <input class="form-control" type="text" required [(ngModel)]="order.delivery.telephone" #phone="ngModel" name="telephone"
+                                                        mask="(000) 000 0000">
+                                                    <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error-color">
+                                                        <div *ngIf="phone.errors.required">
+                                                            Phone is required
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <ng-container *ngIf="order.delivery.method=='Delivery'" id="delivery-address">
                                                 <div class="form-row mt-2">
                                                     <div class="col-12">

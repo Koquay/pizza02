@@ -24,7 +24,7 @@ exports.get = async () => {
 
         // await Order.updateMany({}, {$set: {telephone:"2227772222"}})
 
-        let orders = await Order.find({create_date: date}).sort({ "create_time": 1 });
+        let orders = await Order.find({ create_date: date }).sort({ "create_time": 1 });
         console.log('orders', orders)
 
         return orders;
@@ -45,10 +45,10 @@ exports.post = async (orders) => {
         let time = moment.tz('America/Toronto').format('YYYY-MM-DD hh:mm A');
 
         let newOrder = await Order.create(
-            { 
-                orderItems: orderItems, 
-                delivery: delivery, 
-                create_date:date,
+            {
+                orderItems: orderItems,
+                delivery: delivery,
+                create_date: date,
                 create_time: time
             });
         console.log('newOrder', newOrder);

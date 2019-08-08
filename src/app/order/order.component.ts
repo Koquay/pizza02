@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, DoCheck } from '@angular/core';
 import { OrderService } from './order.service';
 import { Delivery } from './delivery';
 
@@ -7,7 +7,7 @@ import { Delivery } from './delivery';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, DoCheck {
   private order;
   private delivery: Delivery;
   private orderPlaced = false;
@@ -16,7 +16,6 @@ export class OrderComponent implements OnInit {
   constructor(
     private orderService: OrderService,
   ) {
-    // this.delivery = new Delivery();
   }
 
   ngOnInit() {
@@ -24,11 +23,29 @@ export class OrderComponent implements OnInit {
     this.orderPlaced = false;
   }
 
+  ngDoCheck() {
+    console.log('phone', this.order.delivery.telephone)
+    if(this.order.delivery.telephone) {
+      if(this.order.delivery.telephone.length == 10) {
+        this.formatPhoneNumber();
+      }
+    }    
+  }
+
+  private formatPhoneNumber() {
+    let areaCode = this.order.delivery.telephone.substr(0, 3);
+    let prefix = this.order.delivery.telephone.substr(3, 3);
+    let lineNumber = this.order.delivery.telephone.substr(6, 4);
+
+    console.log('phone', areaCode, prefix, lineNumber)
+    
+  }
+
   private getOrders() {
     this.orderService.getOrder().subscribe(order => {
       this.order = order;
 
-      this.order.delivery = this.order.delivery || new Delivery();     
+      this.order.delivery = this.order.delivery || new Delivery();
     })
   }
 
