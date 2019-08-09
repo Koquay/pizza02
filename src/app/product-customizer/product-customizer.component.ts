@@ -5,6 +5,7 @@ import { ProductService } from '../product/product.service';
 import { OrderService } from '../order/order.service';
 import { DialogService } from '../shared/dialog/dialog.service';
 import { Observable } from 'rxjs';
+import { MessageService } from '../shared/message/message/message.service';
 
 @Component({
   selector: 'app-product-customizer',
@@ -24,7 +25,8 @@ export class ProductCustomizerComponent implements OnInit {
     private productService: ProductService,
     private orderService: OrderService,
     private router: Router,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private messageService:MessageService
   ) { }
 
   ngOnInit() {
@@ -122,8 +124,10 @@ export class ProductCustomizerComponent implements OnInit {
     newProduct.customizer = '/product-customizer';
     newProduct.itemCreatedAt = Date.now();
     console.log('Product to add ', newProduct);
-    this.orderService.addToOrder(newProduct).subscribe();
-    this.initProductVariables();
+    this.orderService.addToOrder(newProduct).subscribe(obj => {
+      this.messageService.sendInfo("Item added to your order.")
+      this.initProductVariables();
+    });    
   }
 
   private initProductVariables() {

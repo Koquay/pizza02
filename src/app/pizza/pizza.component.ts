@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PizzaService } from './pizza.service';
 import { OrderService } from '../order/order.service';
+import { MessageService } from '../shared/message/message/message.service';
 
 @Component({
   selector: 'app-pizza',
@@ -12,7 +13,8 @@ export class PizzaComponent implements OnInit {
 
   constructor(
     private pizzaService:PizzaService,
-    private orderService:OrderService
+    private orderService:OrderService,
+    private messageService:MessageService
   ) { }
 
   ngOnInit() {
@@ -32,7 +34,9 @@ export class PizzaComponent implements OnInit {
       pizzToAdd.xtraToppings = [];
       pizzToAdd.customizer = '/customize'
       console.log('Product to add ', pizza)
-      this.orderService.addToOrder(pizzToAdd).subscribe()
+      this.orderService.addToOrder(pizzToAdd).subscribe(order => {
+        this.messageService.sendInfo("Item added to your order.")
+      })
   }
 
   private increaseQuantity(pizza) {

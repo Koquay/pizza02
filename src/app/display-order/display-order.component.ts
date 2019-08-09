@@ -30,9 +30,9 @@ export class DisplayOrderComponent implements OnInit {
     })
   }
 
-  private setOrderStatus(order) {
-    console.log('completed order', order);
-    this.listOrderService.setOrderStatus(order._id, order.completed).subscribe(() => {
+  private setOrderStatus() {
+    console.log('completed order', this.order);
+    this.listOrderService.setOrderStatus(this.order._id, this.order.status).subscribe(() => {
       this.router.navigate(['/list-orders'])
     });    
   }

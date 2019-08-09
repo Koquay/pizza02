@@ -2,11 +2,8 @@ $primary: #a30000;
 $secondary: #dd2c00;
 $tertiary: #ff6434;
 $gray: #f7f7f7;
+$modal-success-background: #b6e3ff;
 
-.row {
-    // background-color: #f2b8b8;
-    // color: red;
-}
 
 i {
     font-size: 1.5rem;
@@ -14,12 +11,17 @@ i {
     font-weight: bold;
 }
 
-.alertDangerClass {
-    background-color: #f2b8b8;
-    color: red;
+.alertSuccessClass,
+.alertInfoClass {
+    background-color: $modal-success-background;
+    color: $secondary;
 }
 
-.alertSuccessClass {
-    background-color: $tertiary;
-    color: blue;
+.alertDangerClass {
+    background-color: #f2b8b8;
+    color: $secondary;
+}
+
+button {
+    background: $primary;
 }

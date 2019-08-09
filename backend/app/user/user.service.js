@@ -48,7 +48,7 @@ exports.login = async (user) => {
     } catch (errorX) {
 
         let error = new Error()
-        error.message = 'Login failure 3! Please try again with correct crdentials.'
+        error.message = 'Login failure! Please try again with correct crdentials.'
         error.status = 401;
         throw error
     }

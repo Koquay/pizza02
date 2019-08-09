@@ -96,6 +96,10 @@ const OrderSchema = new Schema({
         type:Boolean,
         default: false
     }, 
+    status: {
+        type:String,
+        default: "Pending"
+    }, 
     create_date: {
         type:Date,
     },

@@ -5,6 +5,7 @@ import { PizzaService } from '../pizza/pizza.service';
 import { OrderService } from '../order/order.service';
 import { DialogService } from '../shared/dialog/dialog.service';
 import { Observable, of } from 'rxjs';
+import { MessageService } from '../shared/message/message/message.service';
 
 @Component({
   selector: 'app-customize',
@@ -29,7 +30,8 @@ export class CustomizeComponent implements OnInit {
     private pizzaService: PizzaService,
     private orderService: OrderService,
     private router: Router,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private messageService:MessageService
   ) { }
 
   ngOnInit() {
@@ -160,8 +162,11 @@ export class CustomizeComponent implements OnInit {
     newPizza.customizer = '/customize'
     newPizza.itemCreatedAt = Date.now();
     console.log('newPizza', newPizza);
-    this.orderService.addToOrder(newPizza).subscribe();
-    this.initAfterAddToOrder();
+    this.orderService.addToOrder(newPizza).subscribe(obj => {
+      this.messageService.sendInfo("Item added to your order.")
+      this.initAfterAddToOrder();
+    })
+    
   }
 
   private initAfterAddToOrder() {

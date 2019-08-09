@@ -35,8 +35,8 @@ export class ListOrderComponent implements OnInit {
   private getOrders() {
     this.listOrderService.getOrders().subscribe(orders => {
       this.orders = orders;
-      this.pendingOrders = this.orders.filter(order => order.completed == false);
-      this.completedOrders = this.orders.filter(order => order.completed == true);
+      this.pendingOrders = this.orders.filter(order => order.status != "Completed" && order.status != "Cancelled" );
+      this.completedOrders = this.orders.filter(order => order.status == "Completed" || order.status == "Cancelled");
       console.log('pendingOrders', this.pendingOrders)
     })
   }

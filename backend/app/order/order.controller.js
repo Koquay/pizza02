@@ -1,13 +1,13 @@
 const OrderService = require('./order.service');
 const errorHandler = require('../error/error-handler');
 
-exports.completeOrder = async(req, res) => {
+exports.setOrderStatus = async(req, res) => {
     console.log('order complete params', req.params);
     try {
-        await OrderService.completeOrder(req.params.id, req.params.completed);
+        await OrderService.setOrderStatus(req.params.id, req.params.status);
         res.status(201).json([])
     } catch(error) {
-        return errorHandler.handleError('COMPLETE ERROR', res, error);
+        return errorHandler.handleError('setOrderStatus ERROR', res, error);
     }    
 }
 

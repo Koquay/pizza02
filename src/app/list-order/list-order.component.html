@@ -15,11 +15,12 @@
             <div class="col-3">
                 <span class="text-center font-weight-bold col-title">Order Time</span>
             </div>
-            <div class="col-2 text-right">
-                <span class="font-weight-bold col-title">Delivered/Picked up</span>
+            <div class="col-2">
+                <span class="font-weight-bold col-title">Status</span>
             </div>
         </div>
-        <div class="row mb-lg-2 mb-4" *ngFor="let order of pendingOrders">
+        <div class="row mb-lg-2 mb-4" *ngFor="let order of pendingOrders" 
+            [ngClass]="{'prepared-order' : order.status == 'Prepared'}">
             <div class="col">
                 <a [routerLink]="['/display-order', order._id]">
                     {{order.delivery.name}}<br>
@@ -33,12 +34,16 @@
             <div class="col-3 text-left col-lg-3">
                 <span class="">{{order.create_time | date:'shortTime' }}<br></span>
             </div>
-            <div class="col-3 text-center col-lg-2"><span class="text-center">No<br></span></div>
+            <div class="col-3 col-lg-2">
+                <span class="text-center">
+                    {{order.status}}<br>
+                </span>
+            </div>
         </div>
     </section>
     <section>
         <div class="row text-center mb-4">
-            <div class="col"><span class="heading">Completed Orders<br></span></div>
+            <div class="col"><span class="heading">Fulfilled Orders<br></span></div>
         </div>
         <div class="row d-none d-lg-flex mb-2">
             <div class="col">
@@ -50,8 +55,8 @@
             <div class="col-3">
                 <span class="text-center font-weight-bold col-title">Order Time</span>
             </div>
-            <div class="col-2 text-right">
-                <span class="font-weight-bold col-title">Delivered/Picked up</span>
+            <div class="col-2">
+                <span class="font-weight-bold col-title">Status</span>
             </div>
         </div>
         <div class="row mb-lg-2 mb-4 completed-orders" *ngFor="let order of completedOrders">
@@ -68,7 +73,9 @@
             <div class="col-3 text-left col-lg-3">
                 <span class="">{{order.create_time | date:'shortTime' }}<br></span>
             </div>
-            <div class="col-3 text-center col-lg-2"><span class="text-center">No<br></span></div>
+            <div class="col-3 col-lg-2">
+                <span class="text-center">{{order.status}}<br></span>
+            </div>
         </div>
     </section>
 </div>

@@ -34,8 +34,8 @@ export class ListOrderService {
     return of(order);
   }
 
-  public setOrderStatus(id, completed) {    
-    let url = `${this.orderUrl}${id}/${completed}`;
+  public setOrderStatus(id, status) {    
+    let url = `${this.orderUrl}${id}/${status}`;
     console.log('url', url);
     return this.httpClient.post(url, {}).pipe(
       tap(order => {

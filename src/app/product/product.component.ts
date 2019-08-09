@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from './product.service';
 import { ActivatedRoute, Route, Router, NavigationEnd } from '@angular/router';
 import { OrderService } from '../order/order.service';
+import { MessageService } from '../shared/message/message/message.service';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +17,8 @@ export class ProductComponent implements OnInit {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
+    private messageService:MessageService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
@@ -71,7 +73,9 @@ export class ProductComponent implements OnInit {
 
     productToAdd.itemCreatedAt = Date.now();
     productToAdd.xtraToppings = [];
-    this.orderService.addToOrder(productToAdd).subscribe()
+    this.orderService.addToOrder(productToAdd).subscribe(order => {
+      this.messageService.sendInfo("Item added to your order.")
+    })
   }
 
 }

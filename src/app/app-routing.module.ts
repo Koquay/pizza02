@@ -21,22 +21,22 @@ const routes: Routes = [
     path: 'customize',
     loadChildren: './customize/customize.module#CustomizeModule'
   },
-  {
-    path: 'chicken',
-    loadChildren: './chicken/chicken.module#ChickenModule'
-  },
-  {
-    path: 'chicken-customizer',
-    loadChildren: './chicken-customizer/chicken-customizer.module#ChickenCustomizerModule'
-  },
-  {
-    path: 'salads',
-    loadChildren: './salads/salads.module#SaladsModule'
-  },
-  {
-    path: 'salad-customizer',
-    loadChildren: './salad-customizer/salad-customizer.module#SaladCustomizerModule'
-  },
+  // {
+  //   path: 'chicken',
+  //   loadChildren: './chicken/chicken.module#ChickenModule'
+  // },
+  // {
+  //   path: 'chicken-customizer',
+  //   loadChildren: './chicken-customizer/chicken-customizer.module#ChickenCustomizerModule'
+  // },
+  // {
+  //   path: 'salads',
+  //   loadChildren: './salads/salads.module#SaladsModule'
+  // },
+  // {
+  //   path: 'salad-customizer',
+  //   loadChildren: './salad-customizer/salad-customizer.module#SaladCustomizerModule'
+  // },
   {
     path: 'product',
     loadChildren: './product/product.module#ProductModule'

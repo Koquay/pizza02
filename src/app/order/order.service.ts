@@ -33,7 +33,7 @@ export class OrderService {
     this.order.push(item);
     // this.sortOrder();
     console.log('order @service.addToOrder 6', this.order)
-    return of();
+    return of(this.order);
   }
 
   private sortOrder() {    

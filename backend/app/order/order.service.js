@@ -3,14 +3,14 @@ const Order = require('mongoose').model('Order');
 const dateformat = require('dateformat');
 const moment = require('moment-timezone');
 
-exports.completeOrder = async (id, completed) => {
-    console.log('completedOrder ', id, completed);
+exports.setOrderStatus = async (id, status) => {
+    console.log('statusOrder ', id, status);
     try {
         // throw new Error();
-        await Order.updateOne({ _id: id }, { $set: { completed: completed } });
+        await Order.updateOne({ _id: id }, { $set: { status: status } });
         return;
     } catch (error) {
-        error.message = 'Problem updating completed order. Please contact Keith.';
+        error.message = 'Problem updating status. Please contact Keith.';
         error.status = '500';
         throw error;
     }

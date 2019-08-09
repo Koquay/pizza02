@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { timer } from 'rxjs';
 import { MessageService } from './message.service';
 import { AlertService } from './alert/alert.service';
@@ -12,6 +12,7 @@ import { Alert } from './alert/alert'
 export class MessageComponent implements OnInit {
   private alert: Alert = null;
   private disableAlert = timer(15000);
+  @ViewChild('openMessage', { static: true }) openMessage: ElementRef<HTMLElement>;
 
   constructor(
     private alertService: AlertService
@@ -25,14 +26,8 @@ export class MessageComponent implements OnInit {
     this.alertService.alertSubject.subscribe(alert => {
       this.alert = alert;
 
-      this.disableAlert.subscribe(() => {
-        this.removeAlert();
-      });
+      let el: HTMLElement = this.openMessage.nativeElement;
+      el.click();      
     })
   }
-
-  private removeAlert() {
-    this.alert = null;
-  }
-
 }
