@@ -178,7 +178,7 @@ export class CustomizeComponent implements OnInit {
 
   private saveOrder() {
     this.addToOrder();
-    this.router.navigate(['/order'])
+    // this.router.navigate(['/order'])
   }
 
   private edit() {

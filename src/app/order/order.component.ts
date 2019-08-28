@@ -7,7 +7,7 @@ import { Delivery } from './delivery';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent implements OnInit, DoCheck {
+export class OrderComponent implements OnInit {
   private order;
   private delivery: Delivery;
   private orderPlaced = false;
@@ -23,23 +23,23 @@ export class OrderComponent implements OnInit, DoCheck {
     this.orderPlaced = false;
   }
 
-  ngDoCheck() {
-    console.log('phone', this.order.delivery.telephone)
-    if(this.order.delivery.telephone) {
-      if(this.order.delivery.telephone.length == 10) {
-        this.formatPhoneNumber();
-      }
-    }    
-  }
+  // ngDoCheck() {
+  //   console.log('phone', this.order.delivery.telephone)
+  //   if(this.order.delivery.telephone) {
+  //     if(this.order.delivery.telephone.length == 10) {
+  //       this.formatPhoneNumber();
+  //     }
+  //   }    
+  // }
 
-  private formatPhoneNumber() {
-    let areaCode = this.order.delivery.telephone.substr(0, 3);
-    let prefix = this.order.delivery.telephone.substr(3, 3);
-    let lineNumber = this.order.delivery.telephone.substr(6, 4);
+  // private formatPhoneNumber() {
+  //   let areaCode = this.order.delivery.telephone.substr(0, 3);
+  //   let prefix = this.order.delivery.telephone.substr(3, 3);
+  //   let lineNumber = this.order.delivery.telephone.substr(6, 4);
 
-    console.log('phone', areaCode, prefix, lineNumber)
+  //   console.log('phone', areaCode, prefix, lineNumber)
     
-  }
+  // }
 
   private getOrders() {
     this.orderService.getOrder().subscribe(order => {

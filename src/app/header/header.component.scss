@@ -4,15 +4,15 @@ $tertiary: #ff6434;
 $gray: #f7f7f7;
 
 .jumbotron {
-    background: $primary;
-    color: $tertiary;
+    background: $secondary;
+    color: white;
     padding: 0rem 1rem 1rem;    
     line-height: .5;
     
     h1 {
         font-family: 'Roboto';
         font-weight: 700;
-        color: $tertiary !important;
+        color: white !important;
         font-size: 2rem;
     }   
     

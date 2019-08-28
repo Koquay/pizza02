@@ -32,7 +32,7 @@ $gray: #f7f7f7;
 }
 
 #header-container {
-    background: $secondary;
+    background: $primary;
     
     nav {       
         
@@ -54,7 +54,7 @@ $gray: #f7f7f7;
               }  
         
             @media(min-width: 992px) {
-                background: $secondary;
+                background: $primary;
                 padding-left: 0rem; 
                 margin-bottom: 0rem;
                 
@@ -68,5 +68,15 @@ $gray: #f7f7f7;
     i {
         color: white;
         font-size: 2rem;
+    }
+}
+
+.carousel-item {
+    img {
+        height: 20rem;
+
+        @media(min-width: 768px) {
+            height: 40rem;
+        }
     }
 }
